@@ -8,10 +8,37 @@
       href="img/favicon-16x16.png"
       type="image/x-icon"
     />
-
     <link rel="stylesheet" href="style.css" />
     <title>Lino - Gerador Entrada</title>
-    <style></style>
+    <style>
+
+      /* Estilo da navegação */
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+      }
+
+      /* Estilo dos links */
+      nav ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        border-radius: 5px;
+      }
+
+      /* Efeito hover nos links */
+      nav ul li a:hover {
+        
+        color: #ffcc00;
+      }
+    </style>
   </head>
 
   <body>
@@ -19,6 +46,16 @@
       <div class="header-content">
         <img src="img/logo.png" alt="Logo" class="logo" />
       </div>
+      <nav>
+        <ul>
+          <li>
+            <a href="https://www.youtube.com/@Mentorlino" target="_blank">YouTube</a>
+          </li>
+          <li>
+            <a href="https://t.me/mentorlino" target="_blank">Telegram</a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <div class="container">
