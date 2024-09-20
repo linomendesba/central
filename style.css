@@ -314,3 +314,83 @@ h1 {
     margin-bottom: 40px;
   }
 }
+
+/* Estilo para o fundo escuro (overlay) */
+#fundo-escuro {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  z-index: 999; /* Garantir que fique acima do conteúdo */
+}
+
+/* Estilo para o banner */
+#banner-propaganda {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000; /* Um nível acima do fundo escuro */
+  border-radius: 10px;
+  max-width: 90%; /* Garantir que o banner se ajuste em telas pequenas */
+  width: 500px; /* Largura padrão do banner */
+  height: auto; /* Ajusta a altura de forma proporcional */
+  box-sizing: border-box;
+}
+
+/* Estilo do botão fechar */
+#fechar-banner {
+  cursor: pointer;
+  background-color: #093f31;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Estilo da imagem dentro do banner */
+.banner-img {
+  width: 100%;  /* Faz a imagem ocupar 100% da largura do banner */
+  height: auto;  /* Mantém a proporção da imagem */
+  display: block;
+  margin: 0 auto;  /* Centraliza a imagem horizontalmente */
+}
+
+/* Responsividade adicional para telas muito pequenas */
+@media (max-width: 600px) {
+  #banner-propaganda {
+    width: 90%; /* Aumenta a responsividade em telas menores */
+    padding: 10px;
+  }
+
+  #fechar-banner {
+    padding: 3px 7px;
+  }
+}
+.botao-container {
+  text-align: center; /* Centraliza o conteúdo dentro do contêiner */
+  margin-top: 20px; /* Adiciona um espaço acima do botão */
+}
+
+.botao-link {
+  display: inline-block;
+  background-color: #093f31; /* Cor do fundo do botão */
+  color: white; /* Cor do texto */
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.botao-link:hover {
+  background-color: #04ca46; /* Cor de fundo ao passar o mouse */
+  color: #093f31; /* Cor do texto ao passar o mouse */
+}

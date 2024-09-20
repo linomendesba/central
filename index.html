@@ -65,6 +65,7 @@
       <div class="section">
         <h2>Selecione a Liga</h2>
         <div class="button-group">
+          <label><input type="radio" name="liga" value="EXPRESS" /> EXPRESS</label>
           <label><input type="radio" name="liga" value="COPA" /> COPA</label>
           <label><input type="radio" name="liga" value="EURO" /> EURO</label>
           <label
@@ -72,6 +73,7 @@
           >
           <label><input type="radio" name="liga" value="SUPER" /> SUPER</label>
         </div>
+        
       </div>
 
       <div class="section">
@@ -81,6 +83,21 @@
         </div>
       </div>
 
+        <!-- Fundo escuro para o banner -->
+  <div id="fundo-escuro"></div>
+
+  <!-- Banner de propaganda -->
+  <div id="banner-propaganda">
+    <h2>Site Parceiro</h2>
+    <img src="img/banner.png" alt="" class="banner-img">
+    <div class="botao-container">
+      <a href="https://historicosbet.com/" target="_blank" class="botao-link">Visitar Históricos Bet</a>
+    </div>
+    
+    <p>Juntos, alcançaremos o sucesso nos jogos virtuais!</p>
+    <button id="fechar-banner">Fechar</button>
+  </div>
+
       <div class="section">
         <h2>Selecione o Mercado Principal</h2>
         <div class="button-group">
@@ -88,6 +105,12 @@
             ><input type="radio" name="mercado" value="Ambas Sim" /> Ambas
             Sim</label
           >
+          <label
+          ><input type="radio" name="mercado" value="Casa Vence" /> Casa Vence</label
+        >
+        <label
+        ><input type="radio" name="mercado" value="Fora Vence" /> Fora Vence</label
+      >
           <label
             ><input type="radio" name="mercado" value="Ambas Não" /> Ambas
             Não</label
@@ -115,6 +138,10 @@
             Sim</label
           >
           <label class="moeda"
+          ><input type="checkbox" name="moeda" value="Ambas Não" /> Ambas
+          Não</label
+        >
+          <label class="moeda"
             ><input type="checkbox" name="moeda" value="Under 1.5" /> Under
             1.5</label
           >
@@ -130,6 +157,9 @@
             ><input type="checkbox" name="moeda" value="Over 5+" /> Over
             5+</label
           >
+          <label class="moeda"
+          ><input type="checkbox" name="moeda" value="5+ Time" /> 5+ Time</label
+        >
           <label class="moeda"
             ><input type="checkbox" name="moeda" value="Viradinha" />
             Viradinha</label
@@ -183,7 +213,28 @@
     </div>
     
 
-    <script></script>
+    <script>    // Função para exibir o banner
+    function mostrarBanner() {
+      document.getElementById("banner-propaganda").style.display = "block";
+      document.getElementById("fundo-escuro").style.display = "block";
+    }
+
+    // Função para fechar o banner
+    function fecharBanner() {
+      document.getElementById("banner-propaganda").style.display = "none";
+      document.getElementById("fundo-escuro").style.display = "none";
+    }
+
+    // Exibe o banner imediatamente ao carregar a página
+    window.onload = function () {
+      mostrarBanner();
+      
+      // Após o carregamento inicial, exibe o banner a cada 30 minutos
+      setInterval(mostrarBanner, 1800000); // 30 minutos = 1800000 milissegundos
+    };
+
+    // Evento para o botão "Fechar"
+    document.getElementById("fechar-banner").addEventListener("click", fecharBanner);</script>
     <script src="script.js"></script>
   </body>
 </html>
