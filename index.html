@@ -11,33 +11,17 @@
     <link rel="stylesheet" href="style.css" />
     <title>Lino - Gerador Entradas</title>
     <style>
-
-      /* Estilo da navegação */
-      nav ul {
-        list-style: none;
-        margin: 20px;
-    
-        padding: 0;
+      .moedas-container {
         display: flex;
-        gap: 5px;
+        flex-wrap: wrap; /* Permite que os itens quebrem para a linha seguinte, se necessário */
+        gap: 5px; /* Espaçamento entre os checkboxes */
+        padding: 10px;
+        border: so;
       }
 
-      /* Estilo dos links */
-      nav ul li a {
-        text-decoration: none;
-        color: white;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 10px 20px;
-        border: 2px solid transparent;
-        transition: all 0.3s ease;
-        border-radius: 5px;
-      }
-
-      /* Efeito hover nos links */
-      nav ul li a:hover {
-        
-        color: #fcf902;
+      label {
+        display: flex; /* Para alinhar checkbox e texto */
+        align-items: center; /* Alinha verticalmente */
       }
     </style>
   </head>
@@ -50,10 +34,17 @@
       <nav>
         <ul>
           <li>
-            <a href="https://www.youtube.com/@Mentorlino" target="_blank">YouTube</a>
+            <a
+              href="https://www.youtube.com/@Mentorlino"
+              target="_blank"
+              rel="noopener"
+              >YouTube</a
+            >
           </li>
           <li>
-            <a href="https://t.me/mentorlino" target="_blank">Telegram</a>
+            <a href="https://t.me/mentorlino" target="_blank" rel="noopener"
+              >Telegram</a
+            >
           </li>
         </ul>
       </nav>
@@ -65,7 +56,9 @@
       <div class="section">
         <h2>Selecione a Liga</h2>
         <div class="button-group">
-          <label><input type="radio" name="liga" value="EXPRESS" /> EXPRESS</label>
+          <label
+            ><input type="radio" name="liga" value="EXPRESS" /> EXPRESS</label
+          >
           <label><input type="radio" name="liga" value="COPA" /> COPA</label>
           <label><input type="radio" name="liga" value="EURO" /> EURO</label>
           <label
@@ -73,7 +66,6 @@
           >
           <label><input type="radio" name="liga" value="SUPER" /> SUPER</label>
         </div>
-        
       </div>
 
       <div class="section">
@@ -83,20 +75,25 @@
         </div>
       </div>
 
-        <!-- Fundo escuro para o banner -->
-  <div id="fundo-escuro"></div>
+      <!-- Fundo escuro para o banner -->
+      <div id="fundo-escuro"></div>
 
-  <!-- Banner de propaganda -->
-  <div id="banner-propaganda">
-    <h2>Site Parceiro</h2>
-    <img src="img/banner.png" alt="" class="banner-img">
-    <div class="botao-container">
-      <a href="https://historicosbet.com/" target="_blank" class="botao-link">Visitar Históricos Bet</a>
-    </div>
-    
-    <p>Juntos, alcançaremos o sucesso nos jogos virtuais!</p>
-    <button id="fechar-banner">Fechar</button>
-  </div>
+      <!-- Banner de propaganda -->
+      <div id="banner-propaganda">
+        <h2>Site Parceiro</h2>
+        <img src="img/banner.png" alt="" class="banner-img" />
+        <div class="botao-container">
+          <a
+            href="https://historicosbet.com/"
+            target="_blank"
+            rel="noopener"
+            class="botao-link"
+            >Visitar Históricos Bet</a
+          >
+        </div>
+        <p>Juntos, alcançaremos o sucesso nos jogos virtuais!</p>
+        <button id="fechar-banner">Fechar</button>
+      </div>
 
       <div class="section">
         <h2>Selecione o Mercado Principal</h2>
@@ -106,19 +103,21 @@
             Sim</label
           >
           <label
-          ><input type="radio" name="mercado" value="Ambas Não" /> Ambas
-          Não</label
-        >
+            ><input type="radio" name="mercado" value="Ambas Não" /> Ambas
+            Não</label
+          >
           <label
-          ><input type="radio" name="mercado" value="Casa Vence" /> Casa Vence</label
-        >
-        <label
-        ><input type="radio" name="mercado" value="Fora Vence" /> Fora Vence</label
-      >
-
+            ><input type="radio" name="mercado" value="Casa Vence" /> Casa
+            Vence</label
+          >
           <label
-          ><input type="radio" name="mercado" value="Over 1.5" /> Over 1.5</label
-        >
+            ><input type="radio" name="mercado" value="Fora Vence" /> Fora
+            Vence</label
+          >
+          <label
+            ><input type="radio" name="mercado" value="Over 1.5" /> Over
+            1.5</label
+          >
           <label
             ><input type="radio" name="mercado" value="Over 2.5" /> Over
             2.5</label
@@ -128,31 +127,32 @@
             3.5</label
           >
           <label
-          ><input type="radio" name="mercado" value="Over 5+" /> Over
-          5+</label
-        >
-        <label
-        ><input type="radio" name="mercado" value="5+ Time" /> 
-        5+ Time</label
-      >
+            ><input type="radio" name="mercado" value="Over 5+" /> Over
+            5+</label
+          >
+          <label
+            ><input type="radio" name="mercado" value="5+ Time" /> 5+
+            Time</label
+          >
           <label
             ><input type="radio" name="mercado" value="Under 1.5" /> Under
             1.5</label
           >
           <label
-          ><input type="radio" name="mercado" value="Under 2.5" /> Under
-          2.5</label
-        >
-        <label
-        ><input type="radio" name="mercado" value="Under 3.5" /> Under
-        3.5</label
-      >
-        <label
-        ><input type="radio" name="mercado" value="Empate" /> Empate</label
-      >
-      <label
-      ><input type="radio" name="mercado" value="Empate HT" /> Empate HT</label
-    >
+            ><input type="radio" name="mercado" value="Under 2.5" /> Under
+            2.5</label
+          >
+          <label
+            ><input type="radio" name="mercado" value="Under 3.5" /> Under
+            3.5</label
+          >
+          <label
+            ><input type="radio" name="mercado" value="Empate" /> Empate</label
+          >
+          <label
+            ><input type="radio" name="mercado" value="Empate HT" /> Empate
+            HT</label
+          >
         </div>
       </div>
 
@@ -164,9 +164,9 @@
             Sim</label
           >
           <label class="moeda"
-          ><input type="checkbox" name="moeda" value="Ambas Não" /> Ambas
-          Não</label
-        >
+            ><input type="checkbox" name="moeda" value="Ambas Não" /> Ambas
+            Não</label
+          >
           <label class="moeda"
             ><input type="checkbox" name="moeda" value="Under 1.5" /> Under
             1.5</label
@@ -184,8 +184,9 @@
             5+</label
           >
           <label class="moeda"
-          ><input type="checkbox" name="moeda" value="5+ Time" /> 5+ Time</label
-        >
+            ><input type="checkbox" name="moeda" value="5+ Time" /> 5+
+            Time</label
+          >
           <label class="moeda"
             ><input type="checkbox" name="moeda" value="Viradinha" />
             Viradinha</label
@@ -218,17 +219,35 @@
       </div>
 
       <div class="section">
-        <h2>Tip</h2>
+        <h2>Tip Formatada</h2>
         <div id="output"></div>
       </div>
 
+      <div id="moedas">
+        <h3>Selecione Moedas Green</h3>
+        <div class="moedas-container">
+          <label><input type="checkbox" value="Ambas Sim" /> Ambas Sim</label>
+          <label><input type="checkbox" value="Ambas Não" /> Ambas Não</label>
+          <label><input type="checkbox" value="Under 1.5" /> Under 1.5</label>
+          <label><input type="checkbox" value="Over 2.5" /> Over 2.5</label>
+          <label><input type="checkbox" value="Over 3.5" /> Over 3.5</label>
+          <label><input type="checkbox" value="Over 5+" /> Over 5+</label>
+          <label><input type="checkbox" value="5+ Time" /> 5+ Time</label>
+          <label><input type="checkbox" value="Viradinha" /> Viradinha</label>
+          <label><input type="checkbox" value="1x1" /> 1x1</label>
+          <label><input type="checkbox" value="1x2" /> 1x2</label>
+          <label><input type="checkbox" value="2x1" /> 2x1</label>
+          <label><input type="checkbox" value="2x2" /> 2x2</label>
+        </div>
+      </div>
+
       <div class="section">
+        <h2>Minuto Green:</h2>
         <div class="form-group">
-          <label for="minuto-green">Minuto Green:</label>
           <input type="text" id="minuto-green" />
         </div>
+        <h2>Texto Personalizado:</h2>
         <div class="form-group">
-          <label for="texto-personalizado">Texto Personalizado:</label>
           <input
             type="text"
             id="texto-personalizado"
@@ -236,31 +255,34 @@
           />
         </div>
       </div>
-    </div>
-    
-
-    <script>    // Função para exibir o banner
-    function mostrarBanner() {
-      document.getElementById("banner-propaganda").style.display = "block";
-      document.getElementById("fundo-escuro").style.display = "block";
-    }
-
-    // Função para fechar o banner
-    function fecharBanner() {
-      document.getElementById("banner-propaganda").style.display = "none";
-      document.getElementById("fundo-escuro").style.display = "none";
-    }
-
-    // Exibe o banner imediatamente ao carregar a página
-    window.onload = function () {
-      mostrarBanner();
       
-      // Após o carregamento inicial, exibe o banner a cada 30 minutos
-      setInterval(mostrarBanner, 1800000); // 30 minutos = 1800000 milissegundos
-    };
+    </div>
 
-    // Evento para o botão "Fechar"
-    document.getElementById("fechar-banner").addEventListener("click", fecharBanner);</script>
+    <script>
+      // Função para exibir o banner
+      function mostrarBanner() {
+        document.getElementById("banner-propaganda").style.display = "block";
+        document.getElementById("fundo-escuro").style.display = "block";
+      }
+
+      // Função para fechar o banner
+      function fecharBanner() {
+        document.getElementById("banner-propaganda").style.display = "none";
+        document.getElementById("fundo-escuro").style.display = "none";
+      }
+
+      // Exibe o banner imediatamente ao carregar a página
+      window.onload = function () {
+        mostrarBanner();
+        // Após o carregamento inicial, exibe o banner a cada 30 minutos
+        setInterval(mostrarBanner, 1800000); // 30 minutos = 1800000 milissegundos
+      };
+
+      // Evento para o botão "Fechar"
+      document
+        .getElementById("fechar-banner")
+        .addEventListener("click", fecharBanner);
+    </script>
     <script src="script.js"></script>
   </body>
 </html>
