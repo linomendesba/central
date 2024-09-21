@@ -430,22 +430,72 @@ h1, h2 {
   padding: 10px; /* Espaçamento interno */
   background-color: #093f31; /* Cor de fundo */
   color: var(--cor-branco); /* Cor do texto */
-  margin-top: 60px;
+  margin-top: 20px;
 }
+header {
+  position: relative; /* Permite que o conteúdo seja posicionado em relação ao cabeçalho */
+  z-index: 1000; /* Garante que o cabeçalho fique acima do conteúdo */
+}
+
 .header-content {
   display: flex;
-  align-items: center; /* Alinha verticalmente os itens */
-  justify-content: space-between; /* Distribui espaço entre logo e título */
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
+  padding: 10px; /* Adiciona um pouco de espaçamento */
 }
 
 .header-content h1 {
-  flex-grow: 1; /* Faz o título ocupar o espaço restante */
-  text-align: center; /* Centraliza o texto */
-  color: var(--cor-branco); /* Cor do texto */
-  margin: 0; /* Remove margem padrão */
+  flex-grow: 1;
+  text-align: center;
+  color: var(--cor-branco);
+  margin: 0;
 }
 
 .logo {
   max-width: 120px; /* Tamanho máximo da logo */
+}
+
+/* Navegação */
+nav {
+  text-align: center; /* Centraliza os links */
+}
+
+nav ul {
+  list-style: none; /* Remove o marcador padrão */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  display: flex; /* Flex para alinhar horizontalmente */
+  justify-content: center; /* Centraliza os itens */
+}
+
+nav ul li {
+  margin: 0 10px; /* Espaçamento horizontal entre os links */
+}
+
+/* Adicionando espaçamento acima do conteúdo */
+.content {
+  margin-top: 120px; /* Ajuste de acordo com a altura do cabeçalho */
+}
+
+/* Media Queries para dispositivos móveis */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column; /* Muda para coluna em telas menores */
+    align-items: center; /* Centraliza os itens */
+  }
+
+  .logo {
+    margin-bottom: 10px; /* Espaçamento abaixo da logo */
+  }
+
+  nav ul {
+    flex-direction: row; /* Mantém os links em linha */
+    flex-wrap: wrap; /* Permite quebra de linha se necessário */
+    margin-top: 10px; /* Espaçamento acima dos links */
+  }
+
+  nav ul li {
+    margin: 0 5px; /* Espaçamento ajustado entre os links */
+  }
 }
