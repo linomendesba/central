@@ -535,19 +535,43 @@ nav ul li {
   }
 }
 #banner-propaganda {
-  display: flex; /* Usar flexbox para centralizar */
-  flex-direction: column; /* Empilha os itens verticalmente */
-  align-items: center; /* Centraliza horizontalmente */
-  justify-content: center; /* Centraliza verticalmente */
-  max-width: 90%; /* Limita a largura máxima */
-  margin: 0 auto; /* Centraliza o banner na tela */
-  padding: 20px; /* Adiciona um pouco de espaço interno */
-  background-color: var(--cor-branco); /* Cor de fundo */
-  border-radius: 10px; /* Cantos arredondados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 80%; /* Reduzir largura máxima */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  padding: 10px; /* Ajustar padding */
+  background-color: var(--cor-branco);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Impede que o conteúdo transborde */
+  box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+  margin-right: 20px; /* Adiciona margem à direita */
 }
 
-.banner-img {
-  max-width: 100%; /* Imagem responsiva */
-  height: auto; /* Mantém a proporção da imagem */
+/* Media Query para telas pequenas */
+@media (max-width: 480px) {
+  #banner-propaganda {
+    padding: 8px; /* Reduzir padding */
+    max-width: 85%; /* Aumentar um pouco a largura máxima */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    margin-right: 15px; /* Ajustar margem para a direita */
+  }
+
+  h2 {
+    font-size: 14px; /* Reduzir o tamanho do título */
+    text-align: center; /* Centraliza o título */
+  }
+
+  p {
+    font-size: 10px; /* Reduzir o tamanho do texto */
+    text-align: center; /* Centraliza o texto */
+  }
+
+  .botao-link {
+    padding: 5px 10px; /* Ajustar o padding do botão */
+    text-align: center; /* Centraliza o botão */
+  }
 }
+
