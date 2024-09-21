@@ -96,7 +96,7 @@ function gerarTexto() {
   if (liga && minutosSelecionados.length > 0 && mercadoSelecionado) {
     let texto = `🏆${liga}\n⏰ ${minutosSelecionados.join(
       " - "
-    )}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas:\n${formatarMoedas()}\n\n${textoPersonalizado}`;
+    )}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas\n${formatarMoedas()}\n\n${textoPersonalizado}`;
 
     document.getElementById("output").innerText = texto;
   } else {

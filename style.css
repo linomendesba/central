@@ -418,3 +418,34 @@ label {
   display: flex;
   align-items: center; /* Alinha o texto verticalmente com a checkbox */
 }
+h1, h2 {
+  text-align: center; /* Centraliza o texto */
+  border-top: 1px solid rgba(9, 63, 49, 0.5); /* Linha acima com 50% de opacidade */
+  padding-top: 10px; /* Espaçamento acima do título */
+  margin-top: 20px; /* Espaçamento antes da linha */
+}
+
+.footer {
+  text-align: center; /* Centraliza o texto */
+  padding: 10px; /* Espaçamento interno */
+  background-color: #093f31; /* Cor de fundo */
+  color: var(--cor-branco); /* Cor do texto */
+  margin-top: 60px;
+}
+.header-content {
+  display: flex;
+  align-items: center; /* Alinha verticalmente os itens */
+  justify-content: space-between; /* Distribui espaço entre logo e título */
+  width: 100%;
+}
+
+.header-content h1 {
+  flex-grow: 1; /* Faz o título ocupar o espaço restante */
+  text-align: center; /* Centraliza o texto */
+  color: var(--cor-branco); /* Cor do texto */
+  margin: 0; /* Remove margem padrão */
+}
+
+.logo {
+  max-width: 120px; /* Tamanho máximo da logo */
+}
