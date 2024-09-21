@@ -534,3 +534,20 @@ nav ul li {
     margin: 5px; /* Adiciona espaçamento entre os itens */
   }
 }
+#banner-propaganda {
+  display: flex; /* Usar flexbox para centralizar */
+  flex-direction: column; /* Empilha os itens verticalmente */
+  align-items: center; /* Centraliza horizontalmente */
+  justify-content: center; /* Centraliza verticalmente */
+  max-width: 90%; /* Limita a largura máxima */
+  margin: 0 auto; /* Centraliza o banner na tela */
+  padding: 20px; /* Adiciona um pouco de espaço interno */
+  background-color: var(--cor-branco); /* Cor de fundo */
+  border-radius: 10px; /* Cantos arredondados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.banner-img {
+  max-width: 100%; /* Imagem responsiva */
+  height: auto; /* Mantém a proporção da imagem */
+}
