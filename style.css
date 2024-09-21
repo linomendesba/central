@@ -418,7 +418,7 @@ label {
   display: flex;
   align-items: center; /* Alinha o texto verticalmente com a checkbox */
 }
-h1, h2 {
+h1, h2, h3 {
   text-align: center; /* Centraliza o texto */
   border-top: 1px solid rgba(9, 63, 49, 0.5); /* Linha acima com 50% de opacidade */
   padding-top: 10px; /* Espaçamento acima do título */
@@ -428,10 +428,10 @@ h1, h2 {
 .footer {
   max-width: 100%; /* Largura máxima */
   text-align: center; /* Centraliza o texto */
-  padding: 10px; /* Espaçamento interno */
+  padding: 5px; /* Espaçamento interno */
   background-color: #093f31; /* Cor de fundo */
   color: var(--cor-branco); /* Cor do texto */
-  margin-top: 20px;
+  margin-top: 50px;
   margin: 0 auto; /* Centraliza o footer */
 }
 
@@ -521,4 +521,16 @@ nav ul li {
   background-color: var(--cor-branco);
   color: var(--cor-principal);
   box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+}
+@media (max-width: 768px) {
+  .moedas {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha se necessário */
+    justify-content: center; /* Centraliza os itens */
+  }
+  
+  .moeda {
+    flex: 1 1 45%; /* Faz com que cada item ocupe 45% da largura, podendo ajustar conforme necessário */
+    margin: 5px; /* Adiciona espaçamento entre os itens */
+  }
 }
