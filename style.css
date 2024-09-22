@@ -590,7 +590,7 @@ button,
 button:hover,
 .button-group button:hover,
 .form-group button:hover {
-  background-color: #f0f0f0; /* Efeito de destaque ao passar o mouse */
+   /* Efeito de destaque ao passar o mouse */
   transform: scale(1.05); /* Pequeno efeito de aumento ao passar o mouse */
 }
 
