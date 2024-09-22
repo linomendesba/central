@@ -574,4 +574,81 @@ nav ul li {
     text-align: center; /* Centraliza o botão */
   }
 }
+/* Tamanho unificado para todos os botões em todas as telas */
+button,
+.button-group button,
+.form-group button {
+  padding: 18px 36px; /* Tamanho uniforme dos botões */
+  font-size: 18px; /* Tamanho unificado da fonte */
+  width: 100%; /* Faz os botões ocuparem toda a largura disponível */
+  max-width: 350px; /* Limita a largura máxima dos botões */
+  border-radius: 8px; /* Adiciona bordas arredondadas para uma aparência suave */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para realce */
+  transition: all 0.3s ease; /* Transição suave ao interagir */
+}
+
+button:hover,
+.button-group button:hover,
+.form-group button:hover {
+  background-color: #f0f0f0; /* Efeito de destaque ao passar o mouse */
+  transform: scale(1.05); /* Pequeno efeito de aumento ao passar o mouse */
+}
+
+/* Estilização dos rótulos dentro de .button-group e .form-group */
+.button-group label,
+.form-group label {
+  font-size: 18px; /* Tamanho unificado dos rótulos */
+  margin-bottom: 5px;
+  display: block; /* Faz o rótulo ocupar uma linha inteira */
+}
+
+/* Para telas até 768px */
+@media (max-width: 768px) {
+  button,
+  .button-group button,
+  .form-group button {
+    padding: 16px 32px; /* Ajuste do padding para dispositivos médios */
+    font-size: 16px; /* Ajusta o tamanho da fonte */
+  }
+
+  .button-group label,
+  .form-group label {
+    font-size: 16px; /* Ajuste do tamanho dos rótulos */
+  }
+}
+
+/* Para telas até 480px */
+@media (max-width: 480px) {
+  button,
+  .button-group button,
+  .form-group button {
+    padding: 14px 28px; /* Padding mais compacto para dispositivos pequenos */
+    font-size: 14px; /* Ajuste do tamanho da fonte */
+  }
+
+  .button-group label,
+  .form-group label {
+    font-size: 14px; /* Ajuste do tamanho dos rótulos */
+  }
+}
+/* Estilo para o botão de fechar */
+#fechar-banner {
+  background-color: var(--cor-principal); /* Cor de fundo consistente */
+  color: var(--cor-branco); /* Cor do texto */
+  border: none; /* Remove a borda padrão */
+  padding: 10px 20px; /* Tamanho reduzido do botão */
+  border-radius: 8px; /* Borda arredondada */
+  font-size: 16px; /* Tamanho da fonte reduzido */
+  cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+  transition: background 0.3s ease, transform 0.3s ease; /* Transições suaves */
+  display: block; /* Faz o botão ocupar a largura disponível */
+  margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+/* Efeito ao passar o mouse */
+#fechar-banner:hover {
+  background-color: #f00; /* Muda a cor ao passar o mouse */
+  transform: scale(1.05); /* Leve aumento ao passar o mouse */
+}
+
 
