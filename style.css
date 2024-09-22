@@ -420,7 +420,7 @@ label {
 }
 h1, h2, h3 {
   text-align: center; /* Centraliza o texto */
-  border-top: 1px solid rgba(9, 63, 49, 0.5); /* Linha acima com 50% de opacidade */
+  border-top: 1px solid rgba(9, 63, 49, 0.212); /* Linha acima com 50% de opacidade */
   padding-top: 10px; /* Espaçamento acima do título */
   margin-top: 20px; /* Espaçamento antes da linha */
 }
