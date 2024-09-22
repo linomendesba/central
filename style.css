@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: var(--cor-fundo);
   color: var(--cor-principal);
   margin: 0;
@@ -433,6 +433,7 @@ h1, h2, h3 {
   color: var(--cor-branco); /* Cor do texto */
   margin-top: 50px;
   margin: 0 auto; /* Centraliza o footer */
+  margin-top: 20px;
 }
 
 header {
@@ -651,4 +652,29 @@ button:hover,
   transform: scale(1.05); /* Leve aumento ao passar o mouse */
 }
 
+/* Navegação */
+nav {
+  text-align: center; /* Centraliza os links */
+}
+
+nav ul {
+  list-style: none; /* Remove o marcador padrão */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  display: flex; /* Flex para alinhar horizontalmente */
+  justify-content: center; /* Centraliza os itens */
+  flex-direction: row; /* Mantém os links em linha */
+  flex-wrap: wrap; /* Permite quebra de linha se necessário */
+}
+
+/* Media Queries para dispositivos móveis */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column; /* Muda para coluna em telas menores */
+  }
+  
+  nav ul li {
+    margin: 5px 0; /* Espaçamento vertical entre os links */
+  }
+}
 
