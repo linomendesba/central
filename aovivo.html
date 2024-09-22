@@ -47,6 +47,11 @@
   margin: 0; /* Remove margens externas */
 }
 
+.video-item iframe {
+    border-radius: 10px; /* Arredondamento dos cantos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.308); /* Sombra leve */
+  }
+
 h4 {
   text-align: center; /* Centraliza o título */
   margin-bottom: 20px; /* Espaçamento abaixo do título */
@@ -156,15 +161,13 @@ h4 {
       <div class="liga-box" id="express-cup"></div>
     </div>
     
-    
-    
     <div class="container">
-      <h2>Bet 365 Ao vivo ( EM BREVE )</h2>
+      <h2>Futebol Virtual Bet 365 Ao vivo (EM BREVE)</h2>
       <div class="video-container">
         <div class="video-item">
           <h3>Copa</h3>
           <iframe
-            src="https://www.youtube.com/embed/c6SZF9h0rsY?autoplay=1&mute=1&loop=1&playlist=c6SZF9h0rsY"
+            src="https://www.youtube.com/embed/c6SZF9h0rsY?autoplay=1&mute=1&loop=1&playlist=c6SZF9h0rsY&controls=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0"
             frameborder="0"
             allow="autoplay; encrypted-media"
             allowfullscreen
@@ -174,7 +177,7 @@ h4 {
         <div class="video-item">
           <h3>Euro</h3>
           <iframe
-            src="https://www.youtube.com/embed/B8BSQ0NsGjU?autoplay=1&mute=1&loop=1&playlist=B8BSQ0NsGjU"
+            src="https://www.youtube.com/embed/B8BSQ0NsGjU?autoplay=1&mute=1&loop=1&playlist=B8BSQ0NsGjU&controls=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0"
             frameborder="0"
             allow="autoplay; encrypted-media"
             allowfullscreen
@@ -184,7 +187,7 @@ h4 {
         <div class="video-item">
           <h3>Super</h3>
           <iframe
-            src="https://www.youtube.com/embed/vipRaWcQiPg?autoplay=1&mute=1&loop=1&playlist=vipRaWcQiPg"
+            src="https://www.youtube.com/embed/vipRaWcQiPg?autoplay=1&mute=1&loop=1&playlist=vipRaWcQiPg&controls=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0"
             frameborder="0"
             allow="autoplay; encrypted-media"
             allowfullscreen
@@ -194,7 +197,7 @@ h4 {
         <div class="video-item">
           <h3>Premier</h3>
           <iframe
-            src="https://www.youtube.com/embed/n_ToEAkWmCg?autoplay=1&mute=1&loop=1&playlist=n_ToEAkWmCg"
+            src="https://www.youtube.com/embed/n_ToEAkWmCg?autoplay=1&mute=1&loop=1&playlist=n_ToEAkWmCg&controls=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0"
             frameborder="0"
             allow="autoplay; encrypted-media"
             allowfullscreen
@@ -204,17 +207,19 @@ h4 {
         <div class="video-item">
           <h3>Express</h3>
           <iframe
-            src="https://www.youtube.com/embed/EjnFmImbEZA?autoplay=1&mute=1&loop=1&playlist=EjnFmImbEZA"
+            src="https://www.youtube.com/embed/EjnFmImbEZA?autoplay=1&mute=1&loop=1&playlist=EjnFmImbEZA&controls=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0"
             frameborder="0"
             allow="autoplay; encrypted-media"
             allowfullscreen
             muted
           ></iframe>
         </div>
-
-        
-        
+      </div>
+    </div>
+    
+      
   </body>
+  
   <script>
 // Função para exibir o banner
 function mostrarBanner() {
@@ -256,7 +261,7 @@ const dadosSimulados = {
       data_hora: "2024-09-20T18:00:00Z",
       hora: "18",
       minuto: "00",
-      placar: "2-1",
+      placar: "2 X 1",
       equipeum: "Chelsea",
       equipedois: "Arsenal",
     },
@@ -267,7 +272,7 @@ const dadosSimulados = {
       data_hora: "2024-09-20T16:00:00Z",
       hora: "16",
       minuto: "00",
-      placar: "3-2",
+      placar: "3 X 2",
       equipeum: "Brasil",
       equipedois: "Argentina",
     },
@@ -278,9 +283,9 @@ const dadosSimulados = {
       data_hora: "2024-09-19T20:00:00Z",
       hora: "20",
       minuto: "00",
-      placar: "4-0",
-      equipeum: "Team A",
-      equipedois: "Team B",
+      placar: "4 X 0",
+      equipeum: "Ucrânia",
+      equipedois: "Finlândia",
     },
   ],
   "euro-cup": [
@@ -289,7 +294,7 @@ const dadosSimulados = {
       data_hora: "2024-09-19T22:00:00Z",
       hora: "22",
       minuto: "00",
-      placar: "1-1",
+      placar: "1 X 1",
       equipeum: "France",
       equipedois: "Germany",
     },
@@ -300,8 +305,8 @@ const dadosSimulados = {
       data_hora: "2024-09-18T19:00:00Z",
       hora: "19",
       minuto: "00",
-      placar: "2-3",
-      equipeum: "River Plate",
+      placar: "2 X 3",
+      equipeum: "River",
       equipedois: "Flamengo",
     },
   ],
