@@ -23,6 +23,8 @@ body {
   gap: 10px;
 }
 
+
+
 .moeda {
   width: calc(50% - 10px);
   box-sizing: border-box;
@@ -139,6 +141,30 @@ h1 {
   cursor: pointer;
   font-size: 16px;
   transition: background 0.3s, transform 0.3s;
+}
+.bonus-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha se necessário */
+  gap: 10px; /* Espaçamento entre os boxes */
+  justify-content: center; /* Centraliza os itens */
+}
+
+.bonus-box {
+  width: calc(50% - 10px); /* Cada box ocupará metade da largura menos o espaço do gap */
+  box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+}
+
+.bonus-box label {
+  display: block; /* Faz o rótulo ocupar uma linha inteira */
+  margin-bottom: 5px; /* Espaçamento abaixo do rótulo */
+}
+
+.bonus-box input[type="number"] {
+  width: 100%; /* O campo de entrada ocupa toda a largura do box */
+  padding: 10px; /* Espaçamento interno */
+  border: 1px solid var(--cor-principal); /* Borda */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
 }
 
 .button-group button:hover {
