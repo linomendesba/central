@@ -42,6 +42,7 @@
       }
       #boxes-container {
   display: flex;
+  max-width: 1000px;
   flex-wrap: nowrap; /* Não permite que os boxes quebrem para a próxima linha */
   justify-content: space-between; /* Espaçamento igual entre os boxes */
   margin: 0; /* Remove margens externas */
@@ -135,24 +136,13 @@ h4 {
     <!-- Fundo escuro para o banner -->
     <div id="fundo-escuro"></div>
 
-    <!-- Banner de propaganda -->
-    <div id="banner-propaganda">
-      <h2>Site Parceiro</h2>
-      <img src="img/banner.png" alt="" class="banner-img" />
-      <div class="botao-container">
-        <a
-          href="https://historicosbet.com/"
-          target="_blank"
-          rel="noopener"
-          class="botao-link"
-          >Visitar Históricos Bet</a
-        >
-      </div>
-      <p>Juntos, alcançaremos o sucesso nos jogos virtuais!</p>
-      <button id="fechar-banner">Fechar</button>
+    <div class="blinking-img-container">
+      <a href="https://historicosbet.com/" target="_blank">
+        <img src="img/banner.jpg" alt="Imagem Exemplo">
+      </a>
     </div>
     
-    <h4>Últimos Resultados ( SIMULAÇÃO ) </h4>
+  
     <div id="boxes-container">
       <div class="liga-box" id="copa-do-mundo"></div>
       <div class="liga-box" id="euro-cup"></div>
@@ -160,6 +150,7 @@ h4 {
       <div class="liga-box" id="premier-league"></div>
       <div class="liga-box" id="express-cup"></div>
     </div>
+    
     
     <div class="container">
       <h2>Futebol Virtual Bet 365 Ao vivo (EM BREVE)</h2>
@@ -221,124 +212,44 @@ h4 {
   </body>
   
   <script>
-// Função para exibir o banner
-function mostrarBanner() {
-  if (document.getElementById("banner-propaganda").style.display !== "block") {
-    document.getElementById("banner-propaganda").style.display = "block";
-    document.getElementById("fundo-escuro").style.display = "block";
-  }
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const ligas = [
+    { nome: "Premier League", url: "http://localhost:3000/dados/premier-league" },
+    { nome: "Copa do Mundo", url: "http://localhost:3000/dados/copa-do-mundo" },
+    { nome: "Express Cup", url: "http://localhost:3000/dados/express-cup" },
+    { nome: "Euro Cup", url: "http://localhost:3000/dados/euro-cup" },
+    { nome: "super-liga-sul-americana", url: "http://localhost:3000/dados/super-liga-sul-americana" }
+  ];
 
-// Função para fechar o banner
-function fecharBanner() {
-  document.getElementById("banner-propaganda").style.display = "none";
-  document.getElementById("fundo-escuro").style.display = "none";
-}
+  async function fetchLigaData() {
+    for (const liga of ligas) {
+      try {
+        const response = await fetch(liga.url);
+        const data = await response.json();
+        console.log(data); // Verifica os dados retornados
 
-// Exibe o banner imediatamente ao carregar a página
-window.onload = function () {
-  mostrarBanner();
-  // Após o carregamento inicial, exibe o banner a cada 30 minutos
-  setInterval(mostrarBanner, 1800000); // 30 minutos = 1800000 milissegundos
-};
+        if (data && data.length > 0) {
+          const ultimoJogo = data.reduce((maisRecente, jogo) => {
+            return new Date(jogo.data_hora) > new Date(maisRecente.data_hora) ? jogo : maisRecente;
+          });
 
-// Evento para o botão "Fechar"
-document.getElementById("fechar-banner").addEventListener("click", fecharBanner);
-
-const ligas = [
-  { nome: "Premier League", id: "premier-league" },
-  { nome: "Copa do Mundo", id: "copa-do-mundo" },
-  { nome: "Express Cup", id: "express-cup" },
-  { nome: "Euro Cup", id: "euro-cup" },
-  { nome: "Super Liga Sul-Americana", id: "super-liga-sul-americana" },
-];
-
-// Dados simulados
-const dadosSimulados = {
-  "premier-league": [
-    {
-      liga: "Premier League",
-      data_hora: "2024-09-20T18:00:00Z",
-      hora: "18",
-      minuto: "00",
-      placar: "2 X 1",
-      equipeum: "Chelsea",
-      equipedois: "Arsenal",
-    },
-  ],
-  "copa-do-mundo": [
-    {
-      liga: "Copa do Mundo",
-      data_hora: "2024-09-20T16:00:00Z",
-      hora: "16",
-      minuto: "00",
-      placar: "3 X 2",
-      equipeum: "Brasil",
-      equipedois: "Argentina",
-    },
-  ],
-  "express-cup": [
-    {
-      liga: "Express Cup",
-      data_hora: "2024-09-19T20:00:00Z",
-      hora: "20",
-      minuto: "00",
-      placar: "4 X 0",
-      equipeum: "Ucrânia",
-      equipedois: "Finlândia",
-    },
-  ],
-  "euro-cup": [
-    {
-      liga: "Euro Cup",
-      data_hora: "2024-09-19T22:00:00Z",
-      hora: "22",
-      minuto: "00",
-      placar: "1 X 1",
-      equipeum: "France",
-      equipedois: "Germany",
-    },
-  ],
-  "super-liga-sul-americana": [
-    {
-      liga: "Super Liga Sul-Americana",
-      data_hora: "2024-09-18T19:00:00Z",
-      hora: "19",
-      minuto: "00",
-      placar: "2 X 3",
-      equipeum: "River",
-      equipedois: "Flamengo",
-    },
-  ],
-};
-
-async function fetchLigaData() {
-  for (const liga of ligas) {
-    try {
-      const data = dadosSimulados[liga.id];
-
-      if (data && data.length > 0) {
-        // Pega o resultado mais recente
-        const ultimoJogo = data.reduce((maisRecente, jogo) => {
-          return new Date(jogo.data_hora) > new Date(maisRecente.data_hora) ? jogo : maisRecente;
-        });
-
-        document.getElementById(liga.id).innerHTML = `
-          <h3>${ultimoJogo.liga}</h3>
-          <p>⏰: ${ultimoJogo.hora}:${String(ultimoJogo.minuto).padStart(2, '0')}</p>
-          <p class="placar">⚽️: ${ultimoJogo.placar}</p>
-          <p>${ultimoJogo.equipeum} 🆚 ${ultimoJogo.equipedois}</p>
-        `;
+          document.getElementById(liga.nome.toLowerCase().replace(/ /g, "-")).innerHTML = 
+            `<h3>${ultimoJogo.liga}</h3>
+            <p>⏰: ${ultimoJogo.hora}:${String(ultimoJogo.minuto).padStart(2, '0')}</p>
+            <p class="placar">⚽️: ${ultimoJogo.placar}</p>
+            <p>${ultimoJogo.equipeum} 🆚 ${ultimoJogo.equipedois}</p>`;
+        }
+      } catch (error) {
+        console.error(`Erro ao buscar dados da ${liga.nome}:`, error);
       }
-    } catch (error) {
-      console.error(`Erro ao buscar dados da ${liga.nome}:`, error);
     }
   }
-}
 
-// Chama a função inicialmente e depois a cada 30 segundos (30000 ms)
-fetchLigaData();
-setInterval(fetchLigaData, 30000);
+  // Chama a função inicialmente e depois a cada 30 segundos (30000 ms)
+  fetchLigaData();
+  setInterval(fetchLigaData, 30000);
+});
+
 
 
   </script>
