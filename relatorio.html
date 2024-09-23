@@ -31,7 +31,7 @@
         width: calc(100% - 22px);
         padding: 10px;
         margin: auto;
-        border: 1px solid #ccc;
+        border: 1px solid #093f31;
         border-radius: 8px;
         font-size: 16px;
         background-color: #fff; /* Define o fundo como branco */
@@ -54,19 +54,38 @@
       }
 
       .bonus-container {
-        display: flex;
-        flex-wrap: wrap;
-      }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espaçamento entre as caixas */
+    justify-content: center; /* Centraliza as caixas */
+}
 
-      .bonus-box {
-        background: #ffffff;
-        border: 1px solid #ffffff;
-        border-radius: 15px;
-        flex: 1 1 calc(33% - 5px); /* Ajuste para caber mais próximo */
-        margin-bottom: 10px; /* Distância vertical entre as caixas */
-        max-width: 200px; /* Largura máxima */
-        padding: 15px; /* Adiciona padding interno */
-      }
+.bonus-box {
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 15px;
+    flex: 1 1 calc(33% - 10px); /* Ajuste para 3 colunas em telas grandes */
+    margin-bottom: 20px;
+    padding: 15px; /* Padding interno */
+    max-width: 200px; /* Mantém uma largura máxima */
+}
+
+/* Para telas menores (tablets e afins) */
+@media (max-width: 768px) {
+    .bonus-box {
+        flex: 1 1 calc(50% - 10px); /* Ajuste para 2 colunas */
+        max-width: none; /* Permite ocupar mais espaço */
+    }
+}
+
+/* Para telas muito pequenas (celulares) */
+@media (max-width: 480px) {
+    .bonus-box {
+        flex: 1 1 calc(50% - 10px); /* Permite 2 colunas */
+        max-width: none; /* Remove largura máxima */
+    }
+}
+
 
       .historico {
         margin-top: 20px;
