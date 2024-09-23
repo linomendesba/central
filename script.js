@@ -127,15 +127,19 @@ function limpar() {
   document
     .querySelectorAll('input[name="moeda"]')
     .forEach((checkbox) => (checkbox.checked = false));
+  document.querySelectorAll('#moedas input[type="checkbox"]').forEach((checkbox) => (checkbox.checked = false));
+  
   document.getElementById("minutos").innerHTML = "";
   document.getElementById("output").innerText = "";
   document.getElementById("minuto-green").value = "";
   document.getElementById("texto-personalizado").value = "";
+  
   minutosSelecionados = [];
   mercadoSelecionado = "";
   moedasSelecionadas = [];
   textoPersonalizado = "";
 }
+
 
 function adicionarGreen() {
   const minutoGreen = document.getElementById("minuto-green").value;

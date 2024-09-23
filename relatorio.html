@@ -206,6 +206,8 @@
         <button onclick="copiarRelatorio()">Copiar Relatório</button>
         <button onclick="salvarRelatorio()">Salvar Relatório</button>
         <button onclick="limparHistorico()">Limpar Histórico</button>
+        <button onclick="limparCampos()">Limpar Campos</button>
+
       </div>
 
       <div id="resultado" class="result"></div>
@@ -221,6 +223,31 @@
     </div>
 
     <script>
+function limparCampos() {
+  document.getElementById("nomeRelatorio").value = "";
+  document.getElementById("entradas").value = "";
+  document.getElementById("greens").value = "";
+  document.getElementById("reds").value = "";
+
+  // Limpar os campos de bônus
+  document.getElementById("ambasSim").value = "";
+  document.getElementById("ambasNao").value = "";
+  document.getElementById("under1_5").value = "";
+  document.getElementById("over2_5").value = "";
+  document.getElementById("over3_5").value = "";
+  document.getElementById("over5").value = "";
+  document.getElementById("5_time").value = "";
+  document.getElementById("viradinha").value = "";
+  document.getElementById("1x1").value = "";
+  document.getElementById("1x2").value = "";
+  document.getElementById("2x1").value = "";
+  document.getElementById("2x2").value = "";
+
+  // Limpar a área de resultado
+  document.getElementById("resultado").innerText = "";
+}
+
+
       function gerarDataAtual() {
         const dataAtual = new Date();
         const dia = String(dataAtual.getDate()).padStart(2, "0");
@@ -283,12 +310,12 @@
 👑 ${nome}
 
 📊 Relatório
-📅 Data: ${data}
-🎯 Quantidade de Entradas: ${entradas}
+📅  ${data}
+🎯 Entradas: ${entradas}
 ✅ Greens: ${greens} 
 ❌ Reds: ${reds}
 
-Bônus 💰
+💰 Bônus 
 ${bonusTexto}
             `;
 
@@ -312,7 +339,7 @@ ${bonusTexto}
             "historicoRelatorios",
             JSON.stringify(historico)
           );
-          alert("Relatório salvo!");
+          
           exibirHistorico(); // Atualiza o histórico ao salvar
         } else {
           alert("Por favor, gere um relatório primeiro.");
@@ -322,7 +349,7 @@ ${bonusTexto}
       function limparHistorico() {
         localStorage.removeItem("historicoRelatorios");
         document.getElementById("historicoRelatorios").innerHTML = ""; // Limpa a exibição
-        alert("Histórico limpo!");
+        
       }
 
       function exibirHistorico() {
@@ -336,6 +363,7 @@ ${bonusTexto}
           )
           .join("");
       }
+      
 
       // Carrega o histórico ao iniciar a página
       window.onload = exibirHistorico;
@@ -352,12 +380,13 @@ ${bonusTexto}
         document.getElementById("fundo-escuro").style.display = "none";
       }
 
-      // Exibe o banner imediatamente ao carregar a página
       window.onload = function () {
-        mostrarBanner();
-        // Após o carregamento inicial, exibe o banner a cada 30 minutos
-        setInterval(mostrarBanner, 1800000); // 30 minutos = 1800000 milissegundos
-      };
+  exibirHistorico();  // Exibe o histórico ao carregar a página
+  mostrarBanner();    // Mostra o banner de propaganda
+
+  // Após o carregamento inicial, exibe o banner a cada 30 minutos
+  setInterval(mostrarBanner, 1800000); // 30 minutos = 1800000 milissegundos
+};
 
       // Evento para o botão "Fechar"
       document
