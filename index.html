@@ -31,6 +31,29 @@
         display: flex; /* Para alinhar checkbox e texto */
         align-items: center; /* Alinha verticalmente */
       }
+      #horas-container {
+  display: flex;
+  flex-direction: column; /* Alinha os elementos em coluna */
+  align-items: center; /* Centraliza horizontalmente */
+  margin: 20px 0; /* Margem em cima e embaixo do container */
+}
+
+#selecionar-hora {
+  margin-bottom: 10px; /* Espaçamento embaixo do texto para separar das horas */
+  font-weight: bold; /* Opcional: para deixar o texto em negrito */
+}
+
+#horas {
+  display: flex;
+  flex-wrap: wrap; /* Permite que as horas quebrem para a linha seguinte se necessário */
+  justify-content: center; /* Centraliza horizontalmente as horas dentro do contêiner */
+}
+
+#horas label {
+  margin-right: 15px; /* Espaçamento entre as horas */
+}
+
+
     </style>
   </head>
 
@@ -78,6 +101,12 @@
           <label><input type="radio" name="liga" value="SUPER" /> SUPER</label>
         </div>
       </div>
+
+<div id="horas-container">
+  <span id="selecionar-hora">Selecione a Hora (opcional):</span>
+  <div id="horas"></div>
+</div>
+
 
       <div class="section">
         <h2>Selecione os Minutos</h2>
