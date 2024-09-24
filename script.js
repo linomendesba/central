@@ -187,3 +187,11 @@ document.querySelectorAll('input[name="liga"]').forEach((radio) => {
 });
 
 updateMinutos();
+
+const menuToggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('nav ul');
+
+menuToggle.addEventListener('click', () => {
+  menu.classList.toggle('active'); // Adiciona ou remove a classe 'active'
+});
+

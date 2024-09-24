@@ -350,7 +350,7 @@ nav ul li a:hover {
   }
 
   .container {
-    margin-top: 50px;
+    margin-top: 0px;
     margin-bottom: 30px;
   }
 }
@@ -611,31 +611,96 @@ button:hover,
 }
 
 
-/* Navegação */
 nav {
-  text-align: center; /* Centraliza os links */
+  display: flex; /* Usa flexbox para alinhar a logo e o menu */
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center; /* Alinha verticalmente */
+  position: relative; /* Para posicionar o menu */
+  margin: 0 20px; /* Margem nas laterais para evitar corte */
 }
 
+nav .logo {
+  margin-right: 20px; /* Espaço entre a logo e o menu */
+  color: #fff; /* Ajuste a cor conforme necessário */
+}
+
+nav .menu-toggle {
+  margin: 3px; /* Espaçamento vertical entre as linhas */
+  transition: transform 0.3s ease; /* Transição suave */
+  cursor: pointer; /* Cursor de pointer ao passar o mouse */
+}
+
+/* Criação das linhas antes e depois */
+nav .menu-toggle:before,
+nav .menu-toggle:after {
+  content: ""; /* Cria linhas antes e depois */
+  display: block;
+  width: 30px; /* Largura das linhas */
+  height: 3px; /* Espessura das linhas */
+  background-color: #fff; /* Cor das linhas brancas */
+  margin: 3px auto; /* Espaçamento entre as linhas */
+  transition: transform 0.3s ease; /* Transição suave */
+}
+
+/* Exibição do menu */
 nav ul {
   list-style: none; /* Remove o marcador padrão */
   padding: 0; /* Remove padding */
   margin: 0; /* Remove margin */
-  display: flex; /* Flex para alinhar horizontalmente */
-  justify-content: center; /* Centraliza os itens */
-  flex-direction: row; /* Mantém os links em linha */
-  flex-wrap: wrap; /* Permite quebra de linha se necessário */
+  display: none; /* Esconde o menu por padrão */
+  flex-direction: column; /* Direção vertical do menu */
+  opacity: 0; /* Começa invisível */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transição suave */
+  transform: translateY(-10px); /* Mover um pouco para cima */
+}
+
+nav ul.active {
+  display: flex; /* Mostra o menu quando ativo */
+  opacity: 1; /* Torna o menu visível */
+  transform: translateY(0); /* Reseta o movimento */
+}
+
+nav ul li {
+  margin: 5px 0; /* Espaçamento vertical entre os links */
+}
+
+/* Adicionando espaço acima do primeiro link */
+nav ul li:first-child {
+  margin-top: 20px; /* Ajuste o valor conforme necessário */
 }
 
 /* Media Queries para dispositivos móveis */
 @media (max-width: 768px) {
-  nav ul {
-    flex-direction: column; /* Muda para coluna em telas menores */
+  nav {
+    flex-direction: column; /* Coloca logo e menu em coluna */
+    align-items: flex-start; /* Alinha à esquerda */
   }
-  
-  nav ul li {
-    margin: 5px 0; /* Espaçamento vertical entre os links */
+
+  nav ul {
+    width: 100%; /* Largura total do menu */
+    margin: 0; /* Remove margin */
+    padding: 0 20px; /* Adiciona padding nas laterais */
+  }
+
+  nav .menu-toggle {
+    align-self: flex-end; /* Alinha o botão de menu à direita */
   }
 }
+
+/* Animação para o toggle */
+nav .menu-toggle.open {
+  transform: rotate(45deg); /* Rotaciona a linha principal */
+}
+
+nav .menu-toggle.open:before {
+  transform: rotate(90deg); /* Rotaciona a linha de cima */
+}
+
+nav .menu-toggle.open:after {
+  transform: rotate(90deg); /* Rotaciona a linha de baixo */
+}
+
+
 
 html, body {
   margin: 0;
