@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="img/favicon-16x16.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Lino - Central do Tipster</title>
+    <style>
+/* Estilo para o contêiner principal */
+#container {
+    background-color: white; /* Fundo branco */
+    max-width: 950px; /* Largura máxima de 950 pixels */
+    width: 90%; /* Largura responsiva de 90% */
+    margin: 20px auto; /* Centraliza o contêiner na página com margem em cima e embaixo */
+    padding: 20px; /* Adiciona um espaçamento interno */
+    border-radius: 5px; /* Adiciona bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adiciona sombra para destaque */
+    display: flex; /* Ativa flexbox */
+    flex-direction: column; /* Organiza os itens em uma coluna */
+    align-items: center; /* Centraliza os itens horizontalmente */
+}
+
+/* Centraliza o conteúdo dos itens no #bancas */
+#bancas {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a linha seguinte se necessário */
+    justify-content: space-around; /* Distribui igualmente os itens */
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #c9f5dd83;
+    border-radius: 5px;
+    width: 100%; /* Faz com que o elemento ocupe toda a largura do contêiner */
+}
+
+
+/* Estilo para todos os inputs de número, texto e data */
+input[type="number"],
+
+input[type="date"] {
+    width: 80%; /* Define a largura */
+    padding: 10px; /* Padding consistente */
+    margin: 5px 0; /* Margem entre os elementos */
+    border: 1px solid #504c4c; /* Borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
+}
+#stake {
+    width: 100%; /* Define a largura para 100% do contêiner pai */
+    max-width: 400px; /* Define uma largura máxima, se necessário */
+    padding: 10px; /* Padding consistente */
+    margin: 5px 0; /* Margem entre os elementos */
+    border: 1px solid #504c4c; /* Borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
+}
+#odd {
+    width: 100%; /* Aumenta a largura do input de odd */
+    max-width: 400px; /* Define uma largura máxima, se necessário */
+    padding: 10px; /* Padding consistente */
+    margin: 5px 0; /* Margem entre os elementos */
+    border: 1px solid #504c4c; /* Borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
+}
+
+/* Estilo para o select */
+select {
+    width: 100%; /* Define a largura */
+    padding: 10px; /* Padding consistente */
+    margin: 5px 0; /* Margem entre os elementos */
+    border: 1px solid #504c4c; /* Borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
+}
+
+/* Estilo para os botões */
+button {
+    width: 100%; /* Define a largura */
+    padding: 10px; /* Padding consistente */
+    margin: 5px 0; /* Margem entre os elementos */
+    background-color: #093f31; /* Cor de fundo dos botões */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+    transition: background-color 0.3s, transform 0.2s; /* Efeitos de transição */
+}
+
+button:hover {
+    background-color: #086b4a; /* Cor de fundo ao passar o mouse */
+}
+
+button:active {
+    transform: scale(0.98); /* Efeito de clique */
+}
+
+
+
+/* Estilo dos botões */
+button {
+    background-color: #093f31;
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo do botão horizontalmente */
+    align-items: center; /* Centraliza o conteúdo do botão verticalmente */
+    color: white;
+    border: none;
+    cursor: pointer;
+    max-width: 200px;
+    padding: 05px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+
+
+button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#result {
+    margin-top: 20px;
+
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #c9f5dd83;
+    width: 100%; /* Ocupa toda a largura do contêiner pai */
+}
+
+table {
+    width: 100%; /* Faz a tabela ocupar toda a largura do contêiner pai */
+    margin-top: 20px;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ccc;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f1f1f1;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+    #bancas {
+        flex-direction: column; /* Muda a direção para coluna em telas menores */
+        align-items: stretch; /* Estica os itens para ocupar a largura total */
+    }
+
+    #bancas div {
+        flex: 1 1 auto; /* Permite que os itens se ajustem melhor */
+        margin: 5px 0; /* Ajusta a margem para melhor visualização */
+    }
+
+    input[type="number"],
+    input[type="text"],
+    input[type="date"],
+    select {
+        width: 95%; /* Ajusta a largura dos inputs para 95% em telas pequenas */
+    }
+}
+
+
+
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-content">
+        <img src="img/logo.png" alt="Logo" class="logo" />
+        <h1>Central do Tipster</h1>
+      </div>
+      <nav>
+        <div class="menu-toggle">Menu</div>
+        <ul class="menu">
+          <li><a href="index.html">Gerador Tip</a></li>
+          <li><a href="relatorio.html">Relatório</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="gestao.html">Gestão</a></li>
+          <li><a href="aovivo.html">Ao Vivo</a></li>
+          <li><a href="https://www.youtube.com/@Mentorlino" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://t.me/mentorlino" target="_blank" rel="noopener">Telegram</a></li>
+          <li><a href="https://historicosbet.com/" target="_blank" rel="noopener">Históricos Bet</a></li>
+        </ul>
+      </nav>
+    </header>
+  
+
+    <div class="blinking-img-container">
+      <a href="https://historicosbet.com/" target="_blank">
+          <img src="img/banner.jpg" alt="Imagem Exemplo">
+      </a>
+  </div>
+  
+  <div class="container"id="container">
+      <h1>Gestão de Banca</h1>
+  
+      <div id="bancas">
+          <div>
+              <h2>Banca Inicial</h2>
+              <p id="valorInicial">R$ 0.00</p>
+          </div>
+          <div>
+              <h2>Banca Atual</h2>
+              <p id="bancaAtualizada">R$ 0.00</p>
+          </div>
+      </div>
+  
+      <label for="data">Data da operação:</label>
+      <input type="date" id="data" required readonly>
+  
+      <label for="bancaInicial">Valor inicial da banca:</label>
+      <input type="number" id="bancaInicial" step="0.01" required>
+  
+      <div id="operacoes">
+          <h2>Adicionar operação</h2>
+          <label for="stake">Stake:</label>
+          <input type="number" id="stake" step="0.01" required>
+  
+          <label for="odd">Odd:</label>
+          <input type="number" id="odd" step="0.01" required>
+  
+          <label for="resultado">Resultado:</label>
+          <select id="resultado" required>
+              <option value="green">Green</option>
+              <option value="red">Red</option>
+          </select>
+  
+          <button onclick="adicionarOperacao()">Adicionar Operação</button>
+      </div>
+  
+      <div>
+          <button onclick="salvarDados()">Salvar Dados</button>
+          <button onclick="limparHistorico()">Limpar Histórico</button>
+      </div>
+  
+      <label for="dataSelecao">Selecionar Data:</label>
+      <input type="date" id="dataSelecao" onchange="visualizarOperacoes()">
+  
+      <div id="result">
+          <h2>Resultado do Dia</h2>
+          <p>Lucro/Perda do dia: <span id="lucroPerda">0.00</span></p>
+      </div>
+  
+      <h2>Operações</h2>
+      <table id="tabelaOperacoes">
+          <thead>
+              <tr>
+                  <th>Data</th>
+                  <th>Stake</th>
+                  <th>Odd</th>
+                  <th>Resultado</th>
+              </tr>
+          </thead>
+          <tbody></tbody>
+      </table>
+      <div class="footer">
+        <p>&copy; 2024 Todos os direitos reservados Lino Mendes</p>
+      </div>
+  </div>
+  
+  
+  <script>
+    let bancaAtual = 0;
+    let lucroPerdaTotal = 0;
+    const operacoes = [];
+    const datas = [];
+    const saldos = [];
+    let bancaInicialDefinida = false; // Variável para controlar se a banca inicial foi definida
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Carrega dados do Local Storage
+        carregarDados();
+        
+        // Define a data atual no campo de data
+        const hoje = new Date().toISOString().split('T')[0];
+        document.getElementById('data').value = hoje;
+    });
+
+    document.getElementById('bancaInicial').addEventListener('change', function() {
+        if (!bancaInicialDefinida) { // Apenas define a banca inicial se não estiver definida
+            bancaAtual = parseFloat(this.value);
+            document.getElementById('valorInicial').innerText = `R$ ${bancaAtual.toFixed(2)}`;
+            bancaInicialDefinida = true; // Marca que a banca inicial foi definida
+        }
+    });
+
+    function adicionarOperacao() {
+        const stake = parseFloat(document.getElementById('stake').value);
+        const odd = parseFloat(document.getElementById('odd').value);
+        const resultado = document.getElementById('resultado').value;
+        const data = document.getElementById('data').value;
+
+        let resultadoOperacao;
+        if (resultado === 'green') {
+            resultadoOperacao = (stake * odd) - stake; // Lucro da operação
+            bancaAtual += resultadoOperacao; // Adiciona apenas o lucro à banca
+        } else {
+            resultadoOperacao = -stake; // Perda da operação
+            bancaAtual -= stake; // Subtrai a stake
+        }
+
+        lucroPerdaTotal += resultadoOperacao;
+
+        // Adiciona operação à tabela
+        operacoes.push({ data, stake, odd, resultado, resultadoOperacao });
+        adicionarLinhaTabela(data, stake, odd, resultado);
+
+        // Atualiza resultados do dia
+        atualizarResultados();
+
+        // Atualiza o valor inicial da banca
+        document.getElementById('bancaAtualizada').innerText = `R$ ${bancaAtual.toFixed(2)}`;
+
+        // Salva dados no Local Storage
+        salvarDados();
+
+        // Limpa os campos após a operação
+        document.getElementById('stake').value = '';
+        document.getElementById('odd').value = '';
+        document.getElementById('resultado').value = 'green';
+    }
+
+    function adicionarLinhaTabela(data, stake, odd, resultado) {
+        const tabelaBody = document.getElementById('tabelaOperacoes').querySelector('tbody');
+        const novaLinha = document.createElement('tr');
+
+        novaLinha.innerHTML = `
+            <td>${data}</td>
+            <td>${stake.toFixed(2)}</td>
+            <td>${odd.toFixed(2)}</td>
+            <td>${resultado === 'green' ? '✅' : '❌'}</td>
+        `;
+        tabelaBody.appendChild(novaLinha);
+    }
+
+    function atualizarResultados() {
+        // Pega o último resultado da operação
+        const ultimaOperacao = operacoes[operacoes.length - 1];
+        if (ultimaOperacao) {
+            document.getElementById('lucroPerda').innerText = ultimaOperacao.resultadoOperacao.toFixed(2);
+        }
+        document.getElementById('bancaAtualizada').innerText = `R$ ${bancaAtual.toFixed(2)}`;
+    }
+
+    function salvarDados() {
+        const dados = {
+            bancaInicial: bancaAtual,
+            lucroPerdaTotal: lucroPerdaTotal,
+            operacoes: operacoes,
+            datas: datas,
+            saldos: saldos
+        };
+        localStorage.setItem('dadosApostas', JSON.stringify(dados));
+        
+    }
+
+    function carregarDados() {
+        const dadosSalvos = JSON.parse(localStorage.getItem('dadosApostas'));
+        if (dadosSalvos) {
+            bancaAtual = dadosSalvos.bancaInicial;
+            lucroPerdaTotal = dadosSalvos.lucroPerdaTotal;
+            operacoes.push(...dadosSalvos.operacoes);
+            dadosSalvos.datas.forEach((data, index) => {
+                datas.push(data);
+                saldos.push(dadosSalvos.saldos[index]);
+            });
+
+            document.getElementById('bancaInicial').value = bancaAtual.toFixed(2);
+            document.getElementById('valorInicial').innerText = `R$ ${bancaAtual.toFixed(2)}`;
+            document.getElementById('bancaAtualizada').innerText = `R$ ${bancaAtual.toFixed(2)}`;
+            document.getElementById('lucroPerda').innerText = lucroPerdaTotal.toFixed(2);
+
+            // Preenche a tabela de operações
+            operacoes.forEach(operacao => {
+                adicionarLinhaTabela(operacao.data, operacao.stake, operacao.odd, operacao.resultado);
+            });
+        }
+    }
+
+    function visualizarOperacoes() {
+        const dataSelecionada = document.getElementById('dataSelecao').value;
+        const tabelaBody = document.getElementById('tabelaOperacoes').querySelector('tbody');
+        tabelaBody.innerHTML = ''; // Limpa a tabela
+
+        operacoes.forEach(operacao => {
+            if (operacao.data === dataSelecionada) {
+                adicionarLinhaTabela(operacao.data, operacao.stake, operacao.odd, operacao.resultado);
+            }
+        });
+    }
+
+    function limparHistorico() {
+    if (confirm("Tem certeza que deseja limpar todo o histórico?")) {
+        localStorage.removeItem('dadosApostas'); // Remove os dados salvos no Local Storage
+        bancaAtual = 0; // Reseta a banca atual
+        lucroPerdaTotal = 0; // Reseta o lucro/perda total
+        operacoes.length = 0; // Limpa o array de operações
+        datas.length = 0; // Limpa o array de datas
+        saldos.length = 0; // Limpa o array de saldos
+        document.getElementById('bancaInicial').value = '0.00'; // Reseta o campo de entrada da banca inicial
+        document.getElementById('valorInicial').innerText = 'R$ 0.00'; // Atualiza a exibição da banca inicial
+        document.getElementById('lucroPerda').innerText = '0.00'; // Reseta o lucro/perda exibido
+        document.getElementById('bancaAtualizada').innerText = 'R$ 0.00'; // Reseta a exibição da banca atual
+        document.getElementById('tabelaOperacoes').querySelector('tbody').innerHTML = ''; // Limpa a tabela de operações
+        alert("Histórico limpo com sucesso!"); // Alerta de sucesso
+    }
+}
+// Código do menu toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('nav ul');
+
+menuToggle.addEventListener('click', () => {
+  menu.classList.toggle('active'); // Adiciona ou remove a classe 'active'
+});
+
+  </script>
+  
+  </body>
+</html>

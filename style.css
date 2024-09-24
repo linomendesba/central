@@ -420,8 +420,7 @@ h1, h2, h3 {
   max-width: 100%; /* Largura máxima */
   text-align: center; /* Centraliza o texto */
   padding: 5px; /* Espaçamento interno */
-  background-color: #093f31; /* Cor de fundo */
-  color: var(--cor-branco); /* Cor do texto */
+color: #093f31;
   margin-top: 50px;
   margin: 0 auto; /* Centraliza o footer */
   margin-top: 20px;
