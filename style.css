@@ -723,5 +723,9 @@ html, body {
   /* Removendo a máscara */
 }
 
+.margin-top {
+  margin-top: 20px; /* Ajuste o valor conforme necessário */
+  margin-bottom: 0;
+}
 
 

@@ -134,6 +134,8 @@ function limpar() {
 function adicionarGreen() {
   const minutoGreen = document.getElementById("minuto-green").value;
   const horaSelecionada = document.querySelector('input[name="hora"]:checked')?.value; // Captura a hora selecionada
+  const quantidadeGreens = document.getElementById("quantidade-greens").value; // Captura a quantidade de greens
+
   if (minutoGreen && minutosSelecionados.length > 0) {
     const minutoGreenFormatado = `✅${minutoGreen}`;
     const minutosFormatados = minutosSelecionados.map((minuto) =>
@@ -143,14 +145,21 @@ function adicionarGreen() {
     // Formatar as moedas para incluir o símbolo ✅
     const moedasFormatadas = formatarMoedas();
 
-    let texto = `🏆${document.querySelector('input[name="liga"]:checked')?.value}  ⏰ ${horaSelecionada}\n`; // Adiciona dois espaços entre a liga e a hora
+    let texto = `🏆${document.querySelector('input[name="liga"]:checked')?.value}  ⏰${horaSelecionada}\n`; // Adiciona dois espaços entre a liga e a hora
     
-    texto += `🕝 ${minutosFormatados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas:\n${moedasFormatadas}\n\n${textoPersonalizado}`;
+    texto += `➡️${minutosFormatados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas:\n${moedasFormatadas}\n\n${textoPersonalizado}`;
     texto += `\n\nGREEN 💰💰💰😎😜🤑\n${"✅".repeat(9)}\n${"✅".repeat(9)}`;
+    
+// Adiciona a quantidade de greens seguidos ao texto
+if (quantidadeGreens) {
+  texto += `\n\n${quantidadeGreens} Greens Seguidos! 🚀🚀🚀`;
+}
+
 
     document.getElementById("output").innerText = texto;
   }
 }
+
 
 
 function adicionarRed() {
