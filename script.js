@@ -143,9 +143,9 @@ function adicionarGreen() {
     // Formatar as moedas para incluir o símbolo ✅
     const moedasFormatadas = formatarMoedas();
 
-    let texto = `🏆${
-      document.querySelector('input[name="liga"]:checked')?.value
-    }\n⏰ ${horaSelecionada}\n🕝 ${minutosFormatados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas:\n${moedasFormatadas}\n\n${textoPersonalizado}`;
+    let texto = `🏆${document.querySelector('input[name="liga"]:checked')?.value}  ⏰ ${horaSelecionada}\n`; // Adiciona dois espaços entre a liga e a hora
+    
+    texto += `🕝 ${minutosFormatados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas:\n${moedasFormatadas}\n\n${textoPersonalizado}`;
     texto += `\n\nGREEN 💰💰💰😎😜🤑\n${"✅".repeat(9)}\n${"✅".repeat(9)}`;
 
     document.getElementById("output").innerText = texto;
@@ -209,18 +209,13 @@ function toggleHora(hora) {
 
 function gerarTexto() {
   const liga = document.querySelector('input[name="liga"]:checked')?.value;
-  const horaSelecionada = document.querySelector('input[name="hora"]:checked')?.value; // Captura a hora selecionada
+  const horaSelecionada = document.querySelector('input[name="hora"]:checked')?.value; 
   textoPersonalizado = document.getElementById("texto-personalizado").value;
   
   if (liga && minutosSelecionados.length > 0 && mercadoSelecionado) {
-    let texto = `🏆${liga}\n`;
+    let texto = `🏆${liga}  ⏰${horaSelecionada}\n`; // Adiciona dois espaços entre a liga e a hora
     
-    // Inclui a hora se estiver selecionada
-    if (horaSelecionada) {
-      texto += `⏰ ${horaSelecionada}\n`;
-    }
-    
-    texto += `🕝 ${minutosSelecionados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas\n${formatarMoedas()}\n\n${textoPersonalizado}`;
+    texto += `➡️${minutosSelecionados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas\n${formatarMoedas()}\n\n${textoPersonalizado}`;
 
     document.getElementById("output").innerText = texto;
   } else {
@@ -229,8 +224,8 @@ function gerarTexto() {
   }
 }
 
-
-
 window.onload = () => {
   updateHoras();
 };
+
+

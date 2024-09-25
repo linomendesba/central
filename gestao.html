@@ -19,129 +19,82 @@
 #container {
     background-color: white; /* Fundo branco */
     max-width: 950px; /* Largura máxima de 950 pixels */
-    width: 100%; /* Largura responsiva de 90% */
-     /* Centraliza o contêiner na página com margem em cima e embaixo */
-    padding: 20px; /* Adiciona um espaçamento interno */
-    border-radius: 5px; /* Adiciona bordas arredondadas */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adiciona sombra para destaque */
-    display: flex; /* Ativa flexbox */
-    flex-direction: column; /* Organiza os itens em uma coluna */
-    align-items: center; /* Centraliza os itens horizontalmente */
+    width: 100%; /* Largura responsiva de 100% */
+    padding: 20px; /* Adiciona espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Itens em coluna */
+    align-items: center; /* Centraliza itens horizontalmente */
 }
 
 /* Centraliza o conteúdo dos itens no #bancas */
 #bancas {
     display: flex;
-    flex-wrap: wrap; /* Permite que os itens quebrem para a linha seguinte se necessário */
-    justify-content: space-around; /* Distribui igualmente os itens */
+    flex-wrap: wrap; /* Permite quebra de linha */
+    justify-content: space-around; /* Distribuição entre itens */
     padding: 10px;
     margin-bottom: 20px;
     background-color: #c9f5dd83;
     border-radius: 5px;
-    width: 100%; /* Faz com que o elemento ocupe toda a largura do contêiner */
+    width: 100%;
 }
 
-
-/* Estilo para todos os inputs de número, texto e data */
-input[type="number"],
-
-input[type="date"] {
-    width: 80%; /* Define a largura */
-    padding: 10px; /* Padding consistente */
-    margin: 5px 0; /* Margem entre os elementos */
-    border: 1px solid #504c4c; /* Borda */
-    border-radius: 5px; /* Bordas arredondadas */
-    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
-}
-#stake {
-    width: 95%; /* Define a largura para 100% do contêiner pai */
-    max-width: 400px; /* Define uma largura máxima, se necessário */
-    padding: 10px; /* Padding consistente */
-    margin: 5px 0; /* Margem entre os elementos */
-    border: 1px solid #504c4c; /* Borda */
-    border-radius: 5px; /* Bordas arredondadas */
-    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
-}
-#odd {
-    width: 95%; /* Aumenta a largura do input de odd */
-    max-width: 400px; /* Define uma largura máxima, se necessário */
-    padding: 10px; /* Padding consistente */
-    margin: 5px 0; /* Margem entre os elementos */
-    border: 1px solid #504c4c; /* Borda */
-    border-radius: 5px; /* Bordas arredondadas */
-    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
-}
-
-/* Estilo para o select */
-select {
-    width: 95%; /* Define a largura */
-    padding: 10px; /* Padding consistente */
-    margin: 5px 0; /* Margem entre os elementos */
-    border: 1px solid #504c4c; /* Borda */
-    border-radius: 5px; /* Bordas arredondadas */
-    box-sizing: border-box; /* Inclui o padding e a borda na largura total */
+/* Estilo para todos os inputs */
+input[type="number"], input[type="date"], #stake, #odd, select {
+    width: 95%; /* Largura */
+    max-width: 400px; /* Largura máxima */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #504c4c;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 /* Estilo para os botões */
 button {
-    width: 100%; /* Define a largura */
-    padding: 20px; /* Padding consistente */
-    margin: 5px 0; /* Margem entre os elementos */
-    background-color: #093f31; /* Cor de fundo dos botões */
-    color: white; /* Cor do texto */
-    border: none; /* Remove a borda padrão */
-    border-radius: 5px; /* Bordas arredondadas */
-    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
-    transition: background-color 0.3s, transform 0.2s; /* Efeitos de transição */
+    width: 100%; /* Largura total */
+    padding: 15px; /* Padding consistente */
+    margin: 5px 0;
+    background-color: #093f31;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
-    background-color: #086b4a; /* Cor de fundo ao passar o mouse */
-}
-
-button:active {
-    transform: scale(0.98); /* Efeito de clique */
-}
-
-
-
-
-
-
-button:hover {
-    background-color: #218838;
+    background-color: #086b4a; /* Fundo ao passar o mouse */
     transform: scale(1.05);
 }
 
 button:active {
-    transform: scale(0.95);
+    transform: scale(0.95); /* Efeito de clique */
 }
 
+/* Resultados e tabela */
 #result {
     margin-top: 20px;
-
     padding: 10px;
     border-radius: 5px;
     background-color: #c9f5dd83;
-    width: 100%; /* Ocupa toda a largura do contêiner pai */
+    width: 100%;
 }
 
 table {
-    width: 100%; /* Faz a tabela ocupar toda a largura do contêiner pai */
+    width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
     border-radius: 5px;
     overflow: hidden;
 }
 
-table,
-th,
-td {
+table, th, td {
     border: 1px solid #ccc;
 }
 
-th,
-td {
+th, td {
     padding: 8px;
     text-align: center;
 }
@@ -152,23 +105,40 @@ th {
     background-color: #093f31;
 }
 
-/* Media Queries para responsividade */
+/* Responsividade */
 @media (max-width: 768px) {
     #bancas {
-        flex-direction: column; /* Muda a direção para coluna em telas menores */
-        align-items: stretch; /* Estica os itens para ocupar a largura total */
+        flex-direction: column;
+        align-items: stretch;
     }
 
     #bancas div {
-        flex: 1 1 auto; /* Permite que os itens se ajustem melhor */
-        margin: 5px 0; /* Ajusta a margem para melhor visualização */
+        flex: 1 1 auto;
+        margin: 5px 0;
     }
 
-    input[type="number"],
-    input[type="text"],
-    input[type="date"],
-    select {
-        width: 95%; /* Ajusta a largura dos inputs para 95% em telas pequenas */
+    input[type="number"], input[type="text"], input[type="date"], select {
+        width: 95%;
+    }
+}
+/* Para aumentar o texto no celular */
+@media (max-width: 768px) {
+    /* Aumenta o texto no #result */
+    #result h2 {
+        font-size: 24px; /* Aumenta o título */
+    }
+
+    #result p, #result span {
+        font-size: 18px; /* Aumenta o parágrafo e o span */
+    }
+
+    /* Aumenta o texto em Banca Atual */
+    div h2, div p {
+        font-size: 24px; /* Aumenta o título */
+    }
+
+    div p {
+        font-size: 18px; /* Aumenta o parágrafo */
     }
 }
 
