@@ -134,7 +134,7 @@ function limpar() {
 function adicionarGreen() {
   const minutoGreen = document.getElementById("minuto-green").value;
   const horaSelecionada = document.querySelector('input[name="hora"]:checked')?.value; // Captura a hora selecionada
-  const quantidadeGreens = document.getElementById("quantidade-greens").value; // Captura a quantidade de greens
+  const quantidadeGreens = document.getElementById("quantidade-greens").value.trim(); // Captura a quantidade de greens, removendo espaços em branco
 
   if (minutoGreen && minutosSelecionados.length > 0) {
     const minutoGreenFormatado = `✅${minutoGreen}`;
@@ -150,15 +150,15 @@ function adicionarGreen() {
     texto += `➡️${minutosFormatados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas:\n${moedasFormatadas}\n\n${textoPersonalizado}`;
     texto += `\n\nGREEN 💰💰💰😎😜🤑\n${"✅".repeat(9)}\n${"✅".repeat(9)}`;
     
-// Adiciona a quantidade de greens seguidos ao texto
-if (quantidadeGreens) {
-  texto += `\n\n${quantidadeGreens} Greens Seguidos! 🚀🚀🚀`;
-}
-
+    // Verificar se um número válido foi digitado no campo 'quantidade-greens' e é diferente de 1
+    if (quantidadeGreens && !isNaN(quantidadeGreens) && quantidadeGreens > 0) {
+      texto += `\n\n${quantidadeGreens} Greens Seguidos! 🚀`;
+    }
 
     document.getElementById("output").innerText = texto;
   }
 }
+
 
 
 
