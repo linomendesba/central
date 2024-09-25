@@ -123,11 +123,15 @@ function limpar() {
   // Limpar a seleção da hora
   document.querySelectorAll('input[name="hora"]').forEach((radio) => (radio.checked = false));
 
+  // Limpar o campo de "Greens Seguidos"
+  document.getElementById("quantidade-greens").value = 0;
+
   minutosSelecionados = [];
   mercadoSelecionado = "";
   moedasSelecionadas = [];
   textoPersonalizado = "";
 }
+
 
 
 
