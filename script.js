@@ -149,12 +149,17 @@ function adicionarGreen() {
     // Formatar as moedas para incluir o símbolo ✅
     const moedasFormatadas = formatarMoedas();
 
-    let texto = `🏆${document.querySelector('input[name="liga"]:checked')?.value}  ⏰${horaSelecionada}\n`; // Adiciona dois espaços entre a liga e a hora
+    // Adiciona a hora apenas se ela estiver selecionada
+    let texto = `🏆${document.querySelector('input[name="liga"]:checked')?.value}`;
+    if (horaSelecionada) {
+      texto += `  ⏰${horaSelecionada}`;
+    }
     
-    texto += `➡️${minutosFormatados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas:\n${moedasFormatadas}\n\n${textoPersonalizado}`;
+    // Mantém os minutos na linha abaixo, como solicitado
+    texto += `\n➡️${minutosFormatados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas:\n${moedasFormatadas}\n\n${textoPersonalizado}`;
     texto += `\n\nGREEN 💰💰💰😎😜🤑\n${"✅".repeat(9)}\n${"✅".repeat(9)}`;
-    
-    // Verificar se um número válido foi digitado no campo 'quantidade-greens' e é diferente de 1
+
+    // Verificar se um número válido foi digitado no campo 'quantidade-greens' e é maior que 0
     if (quantidadeGreens && !isNaN(quantidadeGreens) && quantidadeGreens > 0) {
       texto += `\n\n${quantidadeGreens} Greens Seguidos! 🚀`;
     }
@@ -162,6 +167,7 @@ function adicionarGreen() {
     document.getElementById("output").innerText = texto;
   }
 }
+
 
 
 
@@ -224,11 +230,15 @@ function gerarTexto() {
   const liga = document.querySelector('input[name="liga"]:checked')?.value;
   const horaSelecionada = document.querySelector('input[name="hora"]:checked')?.value; 
   textoPersonalizado = document.getElementById("texto-personalizado").value;
-  
+
   if (liga && minutosSelecionados.length > 0 && mercadoSelecionado) {
-    let texto = `🏆${liga}  ⏰${horaSelecionada}\n`; // Adiciona dois espaços entre a liga e a hora
-    
-    texto += `➡️${minutosSelecionados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas\n${formatarMoedas()}\n\n${textoPersonalizado}`;
+    // Adiciona a hora apenas se ela estiver selecionada
+    let texto = `🏆${liga}`;
+    if (horaSelecionada) {
+      texto += `  ⏰${horaSelecionada}`;
+    }
+
+    texto += `\n➡️${minutosSelecionados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas\n${formatarMoedas()}\n\n${textoPersonalizado}`;
 
     document.getElementById("output").innerText = texto;
   } else {
@@ -236,6 +246,7 @@ function gerarTexto() {
       "Por favor, selecione uma liga, os minutos, um mercado e as moedas.";
   }
 }
+
 
 window.onload = () => {
   updateHoras();
