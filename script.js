@@ -137,8 +137,8 @@ function limpar() {
 
 function adicionarGreen() {
   const minutoGreen = document.getElementById("minuto-green").value;
-  const horaSelecionada = document.querySelector('input[name="hora"]:checked')?.value; // Captura a hora selecionada
-  const quantidadeGreens = document.getElementById("quantidade-greens").value.trim(); // Captura a quantidade de greens, removendo espaços em branco
+  const horaSelecionada = document.querySelector('input[name="hora"]:checked')?.value;
+  const quantidadeGreens = document.getElementById("quantidade-greens").value.trim();
 
   if (minutoGreen && minutosSelecionados.length > 0) {
     const minutoGreenFormatado = `✅${minutoGreen}`;
@@ -146,20 +146,23 @@ function adicionarGreen() {
       minuto === minutoGreen ? minutoGreenFormatado : minuto
     );
 
-    // Formatar as moedas para incluir o símbolo ✅
-    const moedasFormatadas = formatarMoedas();
-
-    // Adiciona a hora apenas se ela estiver selecionada
     let texto = `🏆${document.querySelector('input[name="liga"]:checked')?.value}`;
     if (horaSelecionada) {
       texto += `  ⏰${horaSelecionada}`;
     }
-    
-    // Mantém os minutos na linha abaixo, como solicitado
-    texto += `\n➡️${minutosFormatados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas:\n${moedasFormatadas}\n\n${textoPersonalizado}`;
+
+    texto += `\n➡️${minutosFormatados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n`;
+
+    // Adiciona as moedas apenas se houver seleção de moedas
+    const moedasFormatadas = formatarMoedas();
+    if (moedasFormatadas) {
+      texto += `💰Moedas:\n${moedasFormatadas}\n\n`;
+    }
+
+    texto += `${textoPersonalizado}`;
     texto += `\n\nGREEN 💰💰💰😎😜🤑\n${"✅".repeat(9)}\n${"✅".repeat(9)}`;
 
-    // Verificar se um número válido foi digitado no campo 'quantidade-greens' e é maior que 0
+    // Verifica se um número válido foi digitado no campo 'quantidade-greens' e é maior que 0
     if (quantidadeGreens && !isNaN(quantidadeGreens) && quantidadeGreens > 0) {
       texto += `\n\n${quantidadeGreens} Greens Seguidos! 🚀`;
     }
@@ -172,10 +175,16 @@ function adicionarGreen() {
 
 
 
+
 function adicionarRed() {
-  let texto = document.getElementById("output").innerText;
-  texto += `\n\n✖️✖️✖️✖️✖️✖️✖️✖️✖️`;
-  document.getElementById("output").innerText = texto;
+  // Captura o nome da liga
+  const liga = document.querySelector('input[name="liga"]:checked')?.value;
+
+  if (liga) {
+    // Substitui todo o conteúdo anterior pelo "✖️" e o nome da liga
+    let texto = `✖️${liga}`;
+    document.getElementById("output").innerText = texto;
+  }
 }
 
 function salvarTexto() {
@@ -190,6 +199,7 @@ function carregarTexto() {
     gerarTexto();
   }
 }
+
 
 document.querySelectorAll('input[name="liga"]').forEach((radio) => {
   radio.addEventListener("change", updateMinutos);
@@ -228,7 +238,7 @@ function toggleHora(hora) {
 
 function gerarTexto() {
   const liga = document.querySelector('input[name="liga"]:checked')?.value;
-  const horaSelecionada = document.querySelector('input[name="hora"]:checked')?.value; 
+  const horaSelecionada = document.querySelector('input[name="hora"]:checked')?.value;
   textoPersonalizado = document.getElementById("texto-personalizado").value;
 
   if (liga && minutosSelecionados.length > 0 && mercadoSelecionado) {
@@ -238,7 +248,15 @@ function gerarTexto() {
       texto += `  ⏰${horaSelecionada}`;
     }
 
-    texto += `\n➡️${minutosSelecionados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n💰Moedas\n${formatarMoedas()}\n\n${textoPersonalizado}`;
+    texto += `\n➡️${minutosSelecionados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n`;
+
+    // Adiciona as moedas apenas se houver seleção de moedas
+    const moedasFormatadas = formatarMoedas();
+    if (moedasFormatadas) {
+      texto += `💰Moedas\n${moedasFormatadas}\n\n`;
+    }
+
+    texto += `${textoPersonalizado}`;
 
     document.getElementById("output").innerText = texto;
   } else {
@@ -246,6 +264,7 @@ function gerarTexto() {
       "Por favor, selecione uma liga, os minutos, um mercado e as moedas.";
   }
 }
+
 
 
 window.onload = () => {
