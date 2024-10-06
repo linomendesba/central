@@ -90,7 +90,6 @@ function formatarMoedas() {
   return linhas.join("\n");
 }
 
-
 async function copiarTexto() {
   const output = document.getElementById("output");
   try {
@@ -113,15 +112,19 @@ function limpar() {
   document
     .querySelectorAll('input[name="moeda"]')
     .forEach((checkbox) => (checkbox.checked = false));
-  document.querySelectorAll('#moedas input[type="checkbox"]').forEach((checkbox) => (checkbox.checked = false));
-  
+  document
+    .querySelectorAll('#moedas input[type="checkbox"]')
+    .forEach((checkbox) => (checkbox.checked = false));
+
   document.getElementById("minutos").innerHTML = "";
   document.getElementById("output").innerText = "";
   document.getElementById("minuto-green").value = "";
   document.getElementById("texto-personalizado").value = "";
-  
+
   // Limpar a seleção da hora
-  document.querySelectorAll('input[name="hora"]').forEach((radio) => (radio.checked = false));
+  document
+    .querySelectorAll('input[name="hora"]')
+    .forEach((radio) => (radio.checked = false));
 
   // Limpar o campo de "Greens Seguidos"
   document.getElementById("quantidade-greens").value = 0;
@@ -132,13 +135,14 @@ function limpar() {
   textoPersonalizado = "";
 }
 
-
-
-
 function adicionarGreen() {
   const minutoGreen = document.getElementById("minuto-green").value;
-  const horaSelecionada = document.querySelector('input[name="hora"]:checked')?.value;
-  const quantidadeGreens = document.getElementById("quantidade-greens").value.trim();
+  const horaSelecionada = document.querySelector(
+    'input[name="hora"]:checked'
+  )?.value;
+  const quantidadeGreens = document
+    .getElementById("quantidade-greens")
+    .value.trim();
 
   if (minutoGreen && minutosSelecionados.length > 0) {
     const minutoGreenFormatado = `✅${minutoGreen}`;
@@ -146,12 +150,16 @@ function adicionarGreen() {
       minuto === minutoGreen ? minutoGreenFormatado : minuto
     );
 
-    let texto = `🏆${document.querySelector('input[name="liga"]:checked')?.value}`;
+    let texto = `🏆${
+      document.querySelector('input[name="liga"]:checked')?.value
+    }`;
     if (horaSelecionada) {
       texto += `  ⏰${horaSelecionada}`;
     }
 
-    texto += `\n➡️${minutosFormatados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n`;
+    texto += `\n➡️${minutosFormatados.join(
+      " - "
+    )}\n✍🏻 ${mercadoSelecionado}\n\n`;
 
     // Adiciona as moedas apenas se houver seleção de moedas
     const moedasFormatadas = formatarMoedas();
@@ -170,11 +178,6 @@ function adicionarGreen() {
     document.getElementById("output").innerText = texto;
   }
 }
-
-
-
-
-
 
 function adicionarRed() {
   // Captura o nome da liga
@@ -200,21 +203,22 @@ function carregarTexto() {
   }
 }
 
-
 document.querySelectorAll('input[name="liga"]').forEach((radio) => {
   radio.addEventListener("change", updateMinutos);
 });
 
 updateMinutos();
 
-const menuToggle = document.querySelector('.menu-toggle');
-const menu = document.querySelector('nav ul');
+const menuToggle = document.querySelector(".menu-toggle");
+const menu = document.querySelector("nav ul");
 
-menuToggle.addEventListener('click', () => {
-  menu.classList.toggle('active'); // Adiciona ou remove a classe 'active'
+menuToggle.addEventListener("click", () => {
+  menu.classList.toggle("active"); // Adiciona ou remove a classe 'active'
 });
 
-const horas = Array.from({ length: 24 }, (_, i) => i.toString().padStart(2, '0'));
+const horas = Array.from({ length: 24 }, (_, i) =>
+  i.toString().padStart(2, "0")
+);
 
 let horasSelecionadas = [];
 
@@ -238,7 +242,9 @@ function toggleHora(hora) {
 
 function gerarTexto() {
   const liga = document.querySelector('input[name="liga"]:checked')?.value;
-  const horaSelecionada = document.querySelector('input[name="hora"]:checked')?.value;
+  const horaSelecionada = document.querySelector(
+    'input[name="hora"]:checked'
+  )?.value;
   textoPersonalizado = document.getElementById("texto-personalizado").value;
 
   if (liga && minutosSelecionados.length > 0 && mercadoSelecionado) {
@@ -248,7 +254,9 @@ function gerarTexto() {
       texto += `  ⏰${horaSelecionada}`;
     }
 
-    texto += `\n➡️${minutosSelecionados.join(" - ")}\n✍🏻 ${mercadoSelecionado}\n\n`;
+    texto += `\n➡️${minutosSelecionados.join(
+      " - "
+    )}\n✍🏻 ${mercadoSelecionado}\n\n`;
 
     // Adiciona as moedas apenas se houver seleção de moedas
     const moedasFormatadas = formatarMoedas();
@@ -265,10 +273,6 @@ function gerarTexto() {
   }
 }
 
-
-
 window.onload = () => {
   updateHoras();
 };
-
-
