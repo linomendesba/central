@@ -1,6 +1,6 @@
 :root {
-  --cor-principal: #093f31;
-  --cor-fundo: #1c2630;
+  --cor-principal: #fe3c00;
+  --cor-fundo: #1c1f26;
   --cor-branco: #fff;
 }
 
@@ -111,7 +111,7 @@ h1 {
 }
 
 .form-group button:hover {
-  background: #01581e;
+  background: #fe3c00;
   transform: scale(1.05);
 }
 
@@ -122,7 +122,7 @@ h1 {
   border-radius: 8px;
   font-size: 16px;
   line-height: 1.5;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px #fe3c00;
 }
 
 .button-group {
@@ -168,7 +168,7 @@ h1 {
 }
 
 .button-group button:hover {
-  background: #017226;
+  background: #fe3c00;
   transform: scale(1.05);
 }
 
@@ -230,7 +230,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: #fcf902;
+  color: #681902;
 }
 
 .button-group input[type="radio"] {
@@ -239,7 +239,7 @@ nav ul li a:hover {
 
 .button-group label:hover,
 .button-group button:hover {
-  background: #027a2a;
+  background: #fe3c00;
   transform: scale(1.05);
 }
 
@@ -392,7 +392,7 @@ nav ul li a:hover {
 }
 
 .botao-link:hover {
-  background-color: #03a73a;
+  background-color: #882102;
   color: var(--cor-principal);
 }
 
@@ -401,7 +401,7 @@ input[type="checkbox"] {
   width: 24px; /* Ajustado para um tamanho melhor */
   height: 24px; /* Ajustado para um tamanho melhor */
   cursor: pointer; /* Muda o cursor ao passar sobre a checkbox */
-  accent-color: #093f31; /* Altere para a cor desejada */
+  accent-color: #fe3c00; /* Altere para a cor desejada */
 }
 
 /* Para estilizar o rótulo e manter o alinhamento */
@@ -411,7 +411,7 @@ label {
 }
 h1, h2, h3 {
   text-align: center; /* Centraliza o texto */
-  border-top: 1px solid rgba(9, 63, 49, 0.212); /* Linha acima com 50% de opacidade */
+  border-top: 1px solid #fe3c00; /* Linha acima com 50% de opacidade */
   padding-top: 10px; /* Espaçamento acima do título */
   margin-top: 20px; /* Espaçamento antes da linha */
 }
@@ -420,7 +420,7 @@ h1, h2, h3 {
   max-width: 100%; /* Largura máxima */
   text-align: center; /* Centraliza o texto */
   padding: 5px; /* Espaçamento interno */
-color: #093f31;
+color: #fe3c00;
   margin-top: 50px;
   margin: 0 auto; /* Centraliza o footer */
   margin-top: 20px;
