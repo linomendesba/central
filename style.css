@@ -32,7 +32,7 @@ body {
 
 header {
   width: 100%;
-  background-color: var(--cor-principal);
+  background: linear-gradient(to right, #fe3c00, #005440);
   color: var(--cor-branco);
   padding: 10px;
   position: fixed;
@@ -229,9 +229,6 @@ nav ul li a {
   border-radius: 5px;
 }
 
-nav ul li a:hover {
-  color: #681902;
-}
 
 .button-group input[type="radio"] {
   display: none;
@@ -411,7 +408,6 @@ label {
 }
 h1, h2, h3 {
   text-align: center; /* Centraliza o texto */
-  border-top: 1px solid #fe3c00; /* Linha acima com 50% de opacidade */
   padding-top: 10px; /* Espaçamento acima do título */
   margin-top: 20px; /* Espaçamento antes da linha */
 }
@@ -447,7 +443,7 @@ header {
 }
 
 .logo {
-  max-width: 150px; /* Tamanho máximo da logo */
+  max-width: 200px; /* Tamanho máximo da logo */
 }
 
 /* Navegação */
