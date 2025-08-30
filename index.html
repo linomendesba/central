@@ -1,395 +1,990 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF--8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="shortcut icon"
       href="img/favicon.ico"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <title>BetStat</title>
+    <title>BetStat - Gerador de Tips</title>
     <style>
+      :root {
+        --primary-color: #005440;
+        --primary-dark: #003d2f;
+        --primary-light: #00745a;
+        --background: #0f1419;
+        --surface: #1a1f26;
+        --surface-light: #242b34;
+        --text-primary: #ffffff;
+        --text-secondary: #a8b3c4;
+        --accent: #00b894;
+        --success: #00c851;
+        --error: #ff4444;
+        --warning: #ffbb33;
+        --border: #2d3748;
+        --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.15);
+        --border-radius: 12px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
-        font-family: "Roboto", sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, var(--background) 0%, #1a1f2e 100%);
+        color: var(--text-primary);
+        min-height: 100vh;
+        line-height: 1.6;
+        overflow-x: hidden;
       }
 
-      .moedas-container {
+      /* Header Styles */
+      header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
         display: flex;
-        flex-wrap: wrap; /* Permite que os itens quebrem para a linha seguinte, se necessário */
-        gap: 5px; /* Espaçamento entre os checkboxes */
-        padding: 10px;
-        border: so;
+        align-items: center;
+        justify-content: space-between;
       }
 
-      label {
-        display: flex; /* Para alinhar checkbox e texto */
-        align-items: center; /* Alinha verticalmente */
+      .logo {
+        height: 45px;
+        width: auto;
+        filter: brightness(1.1);
       }
-      #horas-container {
-  display: flex;
-  flex-direction: column; /* Alinha os elementos em coluna */
-  align-items: center; /* Centraliza horizontalmente */
-  margin: 20px 0; /* Margem em cima e embaixo do container */
-}
 
-#selecionar-hora {
-  margin-bottom: 10px; /* Espaçamento embaixo do texto para separar das horas */
-  font-weight: bold; /* Opcional: para deixar o texto em negrito */
-}
+      .header-content h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        text-align: center;
+        flex: 1;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
 
-#horas {
-  display: flex;
-  flex-wrap: wrap; /* Permite que as horas quebrem para a linha seguinte se necessário */
-  justify-content: center; /* Centraliza horizontalmente as horas dentro do contêiner */
-}
+      /* --- Botão Assine Agora --- */
+      .subscribe-btn {
+        background: linear-gradient(135deg, var(--accent), var(--success));
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 8px;
+        color: var(--text-primary);
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+      }
 
-#horas label {
-  margin-right: 15px; /* Espaçamento entre as horas */
-}
+      .subscribe-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-light);
+      }
+      
+      /* Hero Section */
+      .hero-section {
+        padding: 2rem 0;
+        text-align: center;
+      }
 
+      .hero-banner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
 
+      .hero-banner img {
+        width: 100%;
+        max-width: 1200px;
+        height: auto;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .hero-banner img:hover {
+        transform: scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Main Container */
+      .main-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .container {
+        background: var(--surface);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        overflow: hidden;
+      }
+
+      /* Section Styles */
+      .section {
+        padding: 2rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .section:last-child {
+        border-bottom: none;
+      }
+
+      .section h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        position: relative;
+      }
+
+      .section h2::after {
+        content: '';
+        position: absolute;
+        bottom: -0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(135deg, var(--primary-color), var(--accent));
+        border-radius: 2px;
+      }
+
+      /* Button Groups (Ligas e Mercado) */
+      .button-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .button-group label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        background: var(--surface-light);
+        border: 2px solid var(--border);
+        border-radius: var(--border-radius);
+        color: var(--text-primary);
+        cursor: pointer;
+        transition: var(--transition);
+        font-weight: 500;
+        font-size: 0.9rem;
+        position: relative;
+      }
+      
+      .button-group label:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+      
+      /* --- CORREÇÃO: Estilo DESTACADO para item selecionado --- */
+      .button-group label.is-selected {
+        background: linear-gradient(135deg, var(--success), var(--accent));
+        border-color: var(--success);
+        color: white;
+        font-weight: 700;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+
+      /* Minutes Selection */
+      #minutos {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      #minutos label {
+        padding: 0.75rem 0.5rem;
+        background: var(--surface-light);
+        border: 2px solid var(--border);
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        transition: var(--transition);
+        font-weight: 500;
+      }
+      
+      #minutos label:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+      
+      /* --- CORREÇÃO: Estilo DESTACADO para minuto selecionado --- */
+      #minutos label.is-selected {
+        background: linear-gradient(135deg, var(--success), var(--accent));
+        border-color: var(--success);
+        color: white;
+        font-weight: 700;
+        transform: translateY(-2px);
+      }
+      
+      .button-group input,
+      #minutos input {
+        display: none;
+      }
+
+      /* Coins Selection */
+      .moedas {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .moeda {
+        padding: 1rem;
+        background: var(--surface-light);
+        border: 2px solid var(--border);
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .moeda:hover, .moeda.checked {
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+      }
+
+      .moeda.checked {
+          background: var(--primary-dark);
+      }
+
+      /* Green Coins Selection */
+      .moedas-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .moedas-container label {
+        padding: 1rem;
+        background: var(--surface-light);
+        border: 2px solid var(--border);
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .moedas-container label:hover,
+      .moedas-container input:checked + label {
+        border-color: var(--success);
+        transform: translateY(-2px);
+      }
+
+      .moedas-container input:checked + label {
+          background: var(--primary-dark);
+      }
+      
+      .moeda input,
+      .moedas-container input {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        accent-color: var(--primary-color);
+        cursor: pointer;
+      }
+
+      /* --- Resultado Green e Texto Personalizado Lado a Lado --- */
+      .dual-section {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .dual-section > div {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .dual-section h3 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+      
+      .side-by-side-group {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .form-group-inline {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .form-group-inline label {
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+    
+      .form-group-inline input {
+        width: 140px;
+        text-align: center;
+        padding: 0.75rem;
+        background: var(--surface-light);
+        border: 2px solid var(--border);
+        border-radius: var(--border-radius);
+        color: var(--text-primary);
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      #texto-personalizado {
+        width: 100%;
+        padding: 0.75rem;
+        background: var(--surface-light);
+        border: 2px solid var(--border);
+        border-radius: var(--border-radius);
+        color: var(--text-primary);
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-group button {
+        width: 100%;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, var(--primary-color), var(--accent));
+        border: none;
+        border-radius: var(--border-radius);
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      
+      input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(0, 84, 64, 0.2);
+      }
+
+      /* Output Section */
+      #output {
+        background: var(--surface-light);
+        border: 2px solid var(--border);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        min-height: 200px;
+        white-space: pre-wrap;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: var(--text-primary);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Action Buttons */
+      .action-buttons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .action-buttons button {
+        padding: 1rem;
+        border: none;
+        border-radius: var(--border-radius);
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: var(--shadow-light);
+      }
+
+      .btn-success {
+        background: linear-gradient(135deg, var(--success), #00e676);
+        color: white;
+      }
+
+      .btn-danger {
+        background: linear-gradient(135deg, var(--error), #ff6b6b);
+        color: white;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary-color), var(--accent));
+        color: white;
+      }
+
+      .btn-secondary {
+        background: var(--surface-light);
+        border: 2px solid var(--border);
+        color: var(--text-primary);
+      }
+
+      .action-buttons button:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header-content {
+          padding: 1rem;
+          gap: 1rem;
+        }
+
+        .header-content h1 {
+          font-size: 1.25rem;
+          text-align: left;
+          flex: 1;
+        }
+
+        .main-container {
+          padding: 0 1rem;
+        }
+
+        .section {
+          padding: 1.5rem;
+        }
+
+        .button-group, .moedas, .moedas-container, .action-buttons {
+          grid-template-columns: 1fr;
+        }
+
+        #minutos {
+          grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-banner {
+          padding: 0 1rem;
+        }
+
+        .section h2 {
+          font-size: 1.1rem;
+        }
+
+        .button-group label,
+        .button-group button {
+          font-size: 0.85rem;
+          padding: 0.75rem;
+        }
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--surface);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--primary-light);
+      }
     </style>
   </head>
-
 
   <body>
     <header>
       <div class="header-content">
-        <img src="img/logo.png" alt="Logo" class="logo" />
-        <h1>Gerador Tips Betano</h1>
+        <img src="img/logo.png" alt="BetStat Logo" class="logo" />
+        <a href="https://www.betstat.site/payment.html" target="_blank" class="subscribe-btn">Assine Agora</a>
       </div>
-      
-      <nav>
-        <div class="menu-toggle">Redes</div>
-        <ul class="menu">
-          <li><a href="https://www.youtube.com/@BetStatsite" target="_blank" rel="noopener">YouTube</a></li>
-          <li><a href="https://t.me/sitebetstat" target="_blank" rel="noopener">Telegram</a></li>
-
-        </ul>
-      </nav>
     </header>
-   
-    <div class="blinking-img-container">
-      <a href="https://www.betstat.site/payment.html" target="_blank">
-        <img src="img/banner.jpg" alt="Imagem Exemplo">
-      </a>
-    </div>
-    
-    
-    <div class="container">
-      <div class="section">
-        <h2>Selecione a Liga</h2>
-        <div class="button-group">
-          <label
-            ><input type="radio" name="liga" value="Glória" /> Glória</label
-          >
-          <label><input type="radio" name="liga" value="America" /> America</label>
-          <label><input type="radio" name="liga" value="Euro" /> Euro</label>
-          <label
-            ><input type="radio" name="liga" value="Italiano" /> Italiano</label
-          >
-          <label><input type="radio" name="liga" value="Estrelas" /> Estrelas</label>
-          <label><input type="radio" name="liga" value="Brasileirao" /> Brasileirão</label>
-        </div>
+
+    <section class="hero-section">
+      <div class="hero-banner">
+        <a href="https://www.betstat.site/payment.html" target="_blank">
+          <img src="img/banner.jpg" alt="Banner Promocional">
+        </a>
       </div>
+    </section>
 
-<div id="horas-container">
-  <span id="selecionar-hora">Selecione a Hora (opcional):</span>
-  <div id="horas"></div>
-</div>
-
-
-      <div class="section">
-        <h2>Selecione os Minutos</h2>
-        <div id="minutos">
-          <!-- Minutos serão inseridos aqui via JavaScript -->
-        </div>
-      </div>
-
-
-      <div class="section">
-        <h2>Selecione o Mercado Principal</h2>
-        <div class="button-group">
-          <label
-            ><input type="radio" name="mercado" value="Ambas Sim" /> Ambas
-            Sim</label
-          >
-          <label
-            ><input type="radio" name="mercado" value="Ambas Não" /> Ambas
-            Não</label
-          >
-          <label
-            ><input type="radio" name="mercado" value="Casa Vence" /> Casa
-            Vence</label
-          >
-          <label
-            ><input type="radio" name="mercado" value="Fora Vence" /> Fora
-            Vence</label
-          >
-          <label
-            ><input type="radio" name="mercado" value="Over 1.5" /> Over
-            1.5</label
-          >
-          <label
-            ><input type="radio" name="mercado" value="Over 2.5" /> Over
-            2.5</label
-          >
-          <label
-            ><input type="radio" name="mercado" value="Over 3.5" /> Over
-            3.5</label
-          >
-          <label
-            ><input type="radio" name="mercado" value="Over 5+" /> Over
-            5+</label
-          >
-          <label
-            ><input type="radio" name="mercado" value="5+ Time" /> 5+
-            Time</label
-          >
-          <label
-            ><input type="radio" name="mercado" value="Under 1.5" /> Under
-            1.5</label
-          >
-          <label
-            ><input type="radio" name="mercado" value="Under 2.5" /> Under
-            2.5</label
-          >
-          <label
-            ><input type="radio" name="mercado" value="Under 3.5" /> Under
-            3.5</label
-          >
-          <label
-            ><input type="radio" name="mercado" value="Empate" /> Empate</label
-          >
-          <label
-            ><input type="radio" name="mercado" value="Empate HT" /> Empate
-            HT</label
-          >
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>Selecione as Moedas</h2>
-        <div class="moedas">
-          <label class="moeda"
-            ><input type="checkbox" name="moeda" value="Ambas Sim" /> Ambas
-            Sim</label
-          >
-          <label class="moeda"
-            ><input type="checkbox" name="moeda" value="Ambas Não" /> Ambas
-            Não</label
-          >
-          <label class="moeda"
-            ><input type="checkbox" name="moeda" value="Under 1.5" /> Under
-            1.5</label
-          >
-          <label class="moeda"
-            ><input type="checkbox" name="moeda" value="Over 2.5" /> Over
-            2.5</label
-          >
-          <label class="moeda"
-            ><input type="checkbox" name="moeda" value="Over 3.5" /> Over
-            3.5</label
-          >
-          <label class="moeda"
-            ><input type="checkbox" name="moeda" value="Over 5+" /> Over
-            5+</label
-          >
-          <label class="moeda"
-            ><input type="checkbox" name="moeda" value="5+ Time" /> 5+
-            Time</label
-          >
-          <label class="moeda"
-            ><input type="checkbox" name="moeda" value="Viradinha" />
-            Viradinha</label
-          >
-          <label class="moeda"
-            ><input type="checkbox" name="moeda" value="1x1" /> 1x1</label
-          >
-          <label class="moeda"
-            ><input type="checkbox" name="moeda" value="1x2" /> 1x2</label
-          >
-          <label class="moeda"
-            ><input type="checkbox" name="moeda" value="2x1" /> 2x1</label
-          >
-          <label class="moeda"
-            ><input type="checkbox" name="moeda" value="2x2" /> 2x2</label
-          >
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>Tip Formatada</h2>
-        <div id="output"></div>
-      </div>
-      
-      <div class="section">
-
-        <div class="button-group">
-          <button onclick="carregarTexto()">Carregar Texto</button>
-          <button onclick="copiarTexto()">Copiar</button>
-        </div>
-      </div>
-
-      <div id="moedas">
-        <h2>Selecione Moedas Green</h2>
-        <div class="moedas-container">
-          <label><input type="checkbox" value="Ambas Sim" /> Ambas Sim</label>
-          <label><input type="checkbox" value="Ambas Não" /> Ambas Não</label>
-          <label><input type="checkbox" value="Under 1.5" /> Under 1.5</label>
-          <label><input type="checkbox" value="Over 2.5" /> Over 2.5</label>
-          <label><input type="checkbox" value="Over 3.5" /> Over 3.5</label>
-          <label><input type="checkbox" value="Over 5+" /> Over 5+</label>
-          <label><input type="checkbox" value="5+ Time" /> 5+ Time</label>
-          <label><input type="checkbox" value="Viradinha" /> Viradinha</label>
-          <label><input type="checkbox" value="1x1" /> 1x1</label>
-          <label><input type="checkbox" value="1x2" /> 1x2</label>
-          <label><input type="checkbox" value="2x1" /> 2x1</label>
-          <label><input type="checkbox" value="2x2" /> 2x2</label>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>Minuto Green:</h2>
-        <div class="form-group">
-          <input type="text" id="minuto-green" />
-          <h2 class="margin-top" for="quantidade-greens">Greens Seguidos:</h2>
-          <input type="number" id="quantidade-greens" min="0" value="0" class="margin-top">
-          
-        </div>
+    <main class="main-container">
+      <div class="container">
         
+        <section class="section">
+          <h2>Selecione a Liga</h2>
+          <div class="button-group">
+            <label><input type="radio" name="liga" value="Glória" /> Glória</label>
+            <label><input type="radio" name="liga" value="America" /> America</label>
+            <label><input type="radio" name="liga" value="Euro" /> Euro</label>
+            <label><input type="radio" name="liga" value="Italiano" /> Italiano</label>
+            <label><input type="radio" name="liga" value="Estrelas" /> Estrelas</label>
+            <label><input type="radio" name="liga" value="Brasileirão" /> Brasileirão</label>
+          </div>
+        </section>
 
-        <div class="section">
+        <section class="section">
+          <h2>Selecione os Minutos</h2>
+          <div id="minutos">
+            </div>
+        </section>
+
+        <section class="section">
+          <h2>Selecione o Mercado Principal</h2>
+          <div class="button-group">
+            <label><input type="radio" name="mercado" value="Ambas Marcam" /> Ambas Marcam</label>
+            <label><input type="radio" name="mercado" value="Ambas Não" /> Ambas Não</label>
+            <label><input type="radio" name="mercado" value="Casa Vence" /> Casa Vence</label>
+            <label><input type="radio" name="mercado" value="Fora Vence" /> Fora Vence</label>
+            <label><input type="radio" name="mercado" value="Over 1.5" /> Over 1.5</label>
+            <label><input type="radio" name="mercado" value="Over 2.5" /> Over 2.5</label>
+            <label><input type="radio" name="mercado" value="Over 3.5" /> Over 3.5</label>
+            <label><input type="radio" name="mercado" value="Over 5+" /> Over 5+</label>
+            <label><input type="radio" name="mercado" value="5+ Time" /> 5+ Time</label>
+            <label><input type="radio" name="mercado" value="Under 1.5" /> Under 1.5</label>
+            <label><input type="radio" name="mercado" value="Under 2.5" /> Under 2.5</label>
+            <label><input type="radio" name="mercado" value="Under 3.5" /> Under 3.5</label>
+            <label><input type="radio" name="mercado" value="Empate" /> Empate</label>
+            <label><input type="radio" name="mercado" value="Empate HT" /> Empate HT</label>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Selecione as Moedas</h2>
+          <div class="moedas">
+            <label class="moeda"><input type="checkbox" name="moeda" value="Ambas Sim" />Ambas Sim</label>
+            <label class="moeda"><input type="checkbox" name="moeda" value="Ambas Não" />Ambas Não</label>
+            <label class="moeda"><input type="checkbox" name="moeda" value="Under 1.5" />Under 1.5</label>
+            <label class="moeda"><input type="checkbox" name="moeda" value="Over 2.5" />Over 2.5</label>
+            <label class="moeda"><input type="checkbox" name="moeda" value="Over 3.5" />Over 3.5</label>
+            <label class="moeda"><input type="checkbox" name="moeda" value="Over 5+" />Over 5+</label>
+            <label class="moeda"><input type="checkbox" name="moeda" value="5+ Time" />5+ Time</label>
+            <label class="moeda"><input type="checkbox" name="moeda" value="Viradinha" />Viradinha</label>
+            <label class="moeda"><input type="checkbox" name="moeda" value="1x1" />1x1</label>
+            <label class="moeda"><input type="checkbox" name="moeda" value="1x2" />1x2</label>
+            <label class="moeda"><input type="checkbox" name="moeda" value="2x1" />2x1</label>
+            <label class="moeda"><input type="checkbox" name="moeda" value="2x2" />2x2</label>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Tip Formatada</h2>
+          <div id="output"></div>
+          <div class="action-buttons">
+            <button class="btn-primary" onclick="carregarTexto(event)">Carregar Texto</button>
+            <button class="btn-secondary" onclick="copiarTexto(event)">Copiar</button>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Selecione Moedas Green</h2>
+          <div class="moedas-container">
+            <label><input type="checkbox" value="Ambas Sim" /> Ambas Sim</label>
+            <label><input type="checkbox" value="Ambas Não" /> Ambas Não</label>
+            <label><input type="checkbox" value="Under 1.5" /> Under 1.5</label>
+            <label><input type="checkbox" value="Over 2.5" /> Over 2.5</label>
+            <label><input type="checkbox" value="Over 3.5" /> Over 3.5</label>
+            <label><input type="checkbox" value="Over 5+" /> Over 5+</label>
+            <label><input type="checkbox" value="5+ Time" /> 5+ Time</label>
+            <label><input type="checkbox" value="Viradinha" /> Viradinha</label>
+            <label><input type="checkbox" value="1x1" /> 1x1</label>
+            <label><input type="checkbox" value="1x2" /> 1x2</label>
+            <label><input type="checkbox" value="2x1" /> 2x1</label>
+            <label><input type="checkbox" value="2x2" /> 2x2</label>
+          </div>
+        </section>
+        
+        <section class="section">
+            <div class="dual-section">
+                <div class="green-result-section">
+                    <h3>Resultado Green</h3>
+                    <div class="side-by-side-group">
+                        <div class="form-group-inline">
+                            <label for="minuto-green">Minuto Green:</label>
+                            <input type="text" id="minuto-green" placeholder="Ex: 48" />
+                        </div>
+                        <div class="form-group-inline">
+                            <label for="quantidade-greens">Greens Seguidos:</label>
+                            <input type="number" id="quantidade-greens" min="0" value="0" />
+                        </div>
+                    </div>
+                </div>
+                <div class="custom-text-section">
+                    <h3>Texto Personalizado</h3>
+                    <div class="form-group">
+                        <input type="text" id="texto-personalizado" placeholder="Digite seu texto aqui" />
+                        <button class="btn-primary" onclick="salvarTexto(event)">Salvar Texto</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
           <h2>Ações</h2>
-          <div class="button-group">
-            <button onclick="adicionarGreen()">Green</button>
-            <button onclick="adicionarRed()">Red</button>
-            <button onclick="copiarTexto()">Copiar</button>
-            <button onclick="limpar()">Limpar</button>
+          <div class="action-buttons">
+            <button class="btn-success" onclick="adicionarGreen()">Green</button>
+            <button class="btn-danger" onclick="adicionarRed()">Red</button>
+            <button class="btn-secondary" onclick="copiarTexto(event)">Copiar</button>
+            <button class="btn-secondary" onclick="limpar()">Limpar</button>
           </div>
-        </div>
+        </section>
 
-        <h2>Texto Personalizado:</h2>
-        <div class="form-group">
-          <input
-            type="text"
-            id="texto-personalizado"
-            placeholder="Digite o texto para substituir"
-          />
-        </div>
-
-        <div class="section">
-          <div class="button-group">
-            <button onclick="salvarTexto()">Salvar Texto</button>
-          </div>
-        </div>
-
-        
       </div>
-    </div>
+    </main>
 
     <script>
+      const minutos = {
+        Glória: ['01', '04', '07', '10', '13', '16', '19', '22', '25', '28', '31', '34', '37', '40', '43', '46', '49', '52', '55', '58'],
+        America: ['02', '05', '08', '11', '14', '17', '20', '23', '26', '29', '32', '35', '38', '41', '44', '47', '50', '53', '56', '59'],
+        Euro: ['01', '04', '07', '10', '13', '16', '19', '22', '25', '28', '31', '34', '37', '40', '43', '46', '49', '52', '55', '58'],
+        Italiano: ['02', '05', '08', '11', '14', '17', '20', '23', '26', '29', '32', '35', '38', '41', '44', '47', '50', '53', '56', '59'],
+        Estrelas: ['00', '03', '06', '09', '12', '15', '18', '21', '24', '27', '30', '33', '36', '39', '42', '45', '48', '51', '54', '57'],
+        Brasileirão: ['00', '03', '06', '09', '12', '15', '18', '21', '24', '27', '30', '33', '36', '39', '42', '45', '48', '51', '54', '57'],
+      };
 
-    </script>
-    <script src="script.js"></script>
-    <script>
-        // Bloqueia o menu de contexto (clique direito)
-document.addEventListener("contextmenu", function(e) {
-    e.preventDefault();
-});
+      let minutosSelecionados = [];
+      let mercadoSelecionado = "";
+      let moedasSelecionadas = [];
+      let textoPersonalizado = "";
 
-// Bloqueia atalhos de teclado comuns para ferramentas de desenvolvimento
-document.addEventListener("keydown", function(e) {
-    // F12
-    if (e.key === "F12") {
-        e.preventDefault();
-    }
-    
-    // Ctrl + Shift + I
-    if (e.ctrlKey && e.shiftKey && e.key === "I") {
-        e.preventDefault();
-    }
-    
-    // Ctrl + U (ver código fonte)
-    if (e.ctrlKey && e.key === "u") {
-        e.preventDefault();
-    }
-    
-    // Ctrl + Shift + J (console)
-    if (e.ctrlKey && e.shiftKey && e.key === "J") {
-        e.preventDefault();
-    }
-    
-    // Ctrl + Shift + C (inspeção de elementos)
-    if (e.ctrlKey && e.shiftKey && e.key === "C") {
-        e.preventDefault();
-    }
-    
-    // Ctrl + S (salvar página)
-    if (e.ctrlKey && e.key === "s") {
-        e.preventDefault();
-    }
-    
-    // Ctrl + P (imprimir)
-    if (e.ctrlKey && e.key === "p") {
-        e.preventDefault();
-    }
-});
-
-// Detecta abertura de ferramentas de desenvolvimento
-const devtools = { open: false };
-const element = new Image();
-Object.defineProperty(element, 'id', {
-    get: function () {
-        devtools.open = true;
-    }
-});
-
-// Adiciona detecção alternativa de devtools
-(function() {
-    const threshold = 160;
-    const checkDevTools = function() {
-        if ((window.outerWidth - window.innerWidth) > threshold || 
-            (window.outerHeight - window.innerHeight) > threshold) {
-            devtools.open = true;
+      function updateMinutos() {
+        const liga = document.querySelector('input[name="liga"]:checked')?.value;
+        const minutosDiv = document.getElementById("minutos");
+        minutosDiv.innerHTML = "";
+        minutosSelecionados = [];
+        if (liga) {
+          minutos[liga].forEach((minuto) => {
+            // CORREÇÃO: Passa 'this' (o input) para a função toggleMinuto
+            minutosDiv.innerHTML += `<label><input type="checkbox" name="minuto" value="${minuto}" onchange="toggleMinuto(this, '${minuto}')"> ${minuto}</label>`;
+          });
         }
-    };
-    
-    window.addEventListener('resize', checkDevTools);
-    setInterval(checkDevTools, 500);
-})();
+         gerarTexto();
+      }
 
-// Monitoramento contínuo
-console.log('%c', element);
-setInterval(function() {
-    if (devtools.open) {
-        document.body.innerHTML = '<h1>Acesso não autorizado detectado</h1>';
-        // Ou redirecionar:
-        // window.location.href = 'about:blank';
-        devtools.open = false;
-    }
-}, 1000);
+      // CORREÇÃO: Aceita o elemento do input para adicionar/remover a classe de destaque
+      function toggleMinuto(element, minuto) {
+        element.parentElement.classList.toggle('is-selected');
 
-// Impede seleção de texto
-document.addEventListener('selectstart', function(e) {
-    e.preventDefault();
-});
+        const index = minutosSelecionados.indexOf(minuto);
+        if (index === -1) {
+          minutosSelecionados.push(minuto);
+        } else {
+          minutosSelecionados.splice(index, 1);
+        }
+        gerarTexto();
+      }
 
-// Impede arrastar e soltar
-document.addEventListener('dragstart', function(e) {
-    e.preventDefault();
-});
+      // CORREÇÃO: Novo listener para Ligas e Mercados para destacar o botão
+      document.querySelectorAll('.button-group input[type="radio"]').forEach(radio => {
+          radio.addEventListener('change', () => {
+              const groupName = radio.name;
+              document.querySelectorAll(`input[name="${groupName}"]`).forEach(otherRadio => {
+                  otherRadio.parentElement.classList.remove('is-selected');
+              });
+              radio.parentElement.classList.add('is-selected');
 
-// Ofusca console
-console.log = function() {};
-console.debug = function() {};
-console.info = function() {};
+              if (groupName === 'liga') {
+                  updateMinutos();
+              } else if (groupName === 'mercado') {
+                  mercadoSelecionado = radio.value;
+                  gerarTexto();
+              }
+          });
+      });
+
+
+      document.querySelectorAll('input[name="moeda"]').forEach((checkbox) => {
+        checkbox.addEventListener("change", (event) => {
+            const label = event.target.closest('label');
+            const value = checkbox.value;
+            const index = moedasSelecionadas.indexOf(value);
+
+            if (checkbox.checked) {
+                if (index === -1) moedasSelecionadas.push(value);
+                label.classList.add('checked');
+            } else {
+                if (index !== -1) moedasSelecionadas.splice(index, 1);
+                label.classList.remove('checked');
+            }
+            gerarTexto();
+        });
+      });
+
+      function formatarMoedas(isGreen = false) {
+        if (moedasSelecionadas.length === 0) return "";
+        
+        let moedasTexto = "💰Moedas:\n";
+        const linhas = moedasSelecionadas.map(moeda => {
+          if (isGreen) {
+            const isChecked = document.querySelector(`.moedas-container input[value="${moeda}"]`)?.checked || false;
+            return isChecked ? `${moeda}✅` : moeda;
+          }
+          return moeda;
+        });
+
+        return moedasTexto + linhas.join("\n");
+      }
+      
+      /**
+       * FUNÇÃO ATUALIZADA PARA FORMATAR HORÁRIOS COM VIRADA DE HORA
+       */
+      function formatarHorarios(minutoGreen = null) {
+          const now = new Date();
+          let horaAtual = now.getHours();
+          let minutoAnterior = -1;
+
+          if (minutosSelecionados.length === 0) {
+              return "";
+          }
+
+          const horariosString = minutosSelecionados.map(minutoAtual => {
+              // Lógica da virada de hora
+              if (parseInt(minutoAtual) < minutoAnterior) {
+                  horaAtual++;
+                  if (horaAtual === 24) {
+                      horaAtual = 0; // Vira o dia
+                  }
+              }
+              minutoAnterior = parseInt(minutoAtual);
+              const horaFormatada = horaAtual.toString().padStart(2, '0');
+
+              // Lógica do check de Green
+              let linha = `▸ ${horaFormatada}:${minutoAtual}`;
+              if (minutoGreen && minutoAtual === minutoGreen) {
+                  linha += '✅';
+              }
+              return linha;
+          }).join("\n");
+
+          return `⏰ Horários\n${horariosString}`;
+      }
+
+
+      async function copiarTexto(event) {
+        const output = document.getElementById("output");
+        try {
+          await navigator.clipboard.writeText(output.innerText);
+          
+          const button = event.target;
+          const originalText = button.textContent;
+          button.textContent = 'Copiado!';
+          button.style.background = 'linear-gradient(135deg, var(--success), #00e676)';
+          
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = '';
+          }, 2000);
+        } catch (err) {
+          console.error("Falha ao copiar o texto.", err);
+          alert('Erro ao copiar texto. Tente novamente.');
+        }
+      }
+
+      function limpar() {
+        document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
+            input.checked = false;
+            input.parentElement.classList.remove('is-selected'); // Limpa destaque
+        });
+        document.querySelectorAll('.moeda.checked').forEach(label => label.classList.remove('checked'));
+
+        document.getElementById("minutos").innerHTML = "";
+        document.getElementById("output").innerText = "";
+        document.getElementById("minuto-green").value = "";
+        document.getElementById("texto-personalizado").value = "";
+        document.getElementById("quantidade-greens").value = 0;
+
+        minutosSelecionados = [];
+        mercadoSelecionado = "";
+        moedasSelecionadas = [];
+        textoPersonalizado = "";
+      }
+
+      function adicionarGreen() {
+        const liga = document.querySelector('input[name="liga"]:checked')?.value;
+        const minutoGreenInput = document.getElementById("minuto-green").value.trim();
+        const minutoGreen = minutoGreenInput.padStart(2, '0');
+        const quantidadeGreens = document.getElementById("quantidade-greens").value.trim();
+        textoPersonalizado = document.getElementById("texto-personalizado").value;
+
+        if (!liga || !mercadoSelecionado || minutosSelecionados.length === 0 || !minutoGreenInput) {
+          alert("Para gerar um GREEN, selecione a Liga, Mercado, Minutos e digite o Minuto Green.");
+          return;
+        }
+        
+        const horariosFormatados = formatarHorarios(minutoGreen);
+        const moedasFormatadas = formatarMoedas(true);
+
+        let texto = `🍀🍀FUTEBOL VIRTUAL BETANO🍀🍀\n\n`;
+        texto += `🏆 Liga: ${liga}\n`;
+        texto += `📣 Entrada: ${mercadoSelecionado}🎉\n\n`;
+        texto += `${horariosFormatados}\n\n`;
+
+        if (moedasFormatadas) {
+          texto += `${moedasFormatadas}\n\n`;
+        }
+        
+        if (textoPersonalizado) {
+          texto += `${textoPersonalizado}\n\n`;
+        }
+        
+        texto += `GREEN 💰💰💰😎😜🤑\n`;
+        texto += `${"✅".repeat(9)}\n`;
+        texto += `${"✅".repeat(9)}\n\n`;
+
+        if (quantidadeGreens && !isNaN(quantidadeGreens) && quantidadeGreens > 0) {
+          texto += `${quantidadeGreens} Greens Seguidos! 🚀\n\n`;
+        }
+
+        texto += `⚡️BetStat`;
+
+        document.getElementById("output").innerText = texto;
+      }
+
+      function adicionarRed() {
+        const liga = document.querySelector('input[name="liga"]:checked')?.value;
+        textoPersonalizado = document.getElementById("texto-personalizado").value;
+
+        if (!liga || !mercadoSelecionado) {
+          alert("Para gerar um RED, selecione a Liga e o Mercado.");
+          return;
+        }
+
+        let texto = `🍀🍀FUTEBOL VIRTUAL BETANO🍀🍀\n\n`;
+        texto += `🏆 Liga: ${liga}\n`;
+        texto += `📣 Entrada: ${mercadoSelecionado}\n\n`;
+        texto += `${"✖️".repeat(9)}\n\n`;
+
+        if (textoPersonalizado) {
+          texto += `${textoPersonalizado}\n\n`;
+        }
+        
+        texto += `⚡️BetStat`;
+        
+        document.getElementById("output").innerText = texto;
+      }
+
+      function salvarTexto(event) {
+        const textoInput = document.getElementById("texto-personalizado").value;
+        localStorage.setItem("textoPersonalizado", textoInput);
+        
+        const button = event.target;
+        const originalText = button.textContent;
+        button.textContent = 'Salvo!';
+        button.style.background = 'linear-gradient(135deg, var(--success), #00e676)';
+        
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.background = '';
+        }, 2000);
+      }
+
+      function carregarTexto(event) {
+        const textoSalvo = localStorage.getItem("textoPersonalizado");
+        if (textoSalvo) {
+          document.getElementById("texto-personalizado").value = textoSalvo;
+          textoPersonalizado = textoSalvo;
+          gerarTexto();
+          
+          const button = event.target;
+          const originalText = button.textContent;
+          button.textContent = 'Carregado!';
+          button.style.background = 'linear-gradient(135deg, var(--success), #00e676)';
+          
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = '';
+          }, 2000);
+        } else {
+          alert('Nenhum texto salvo encontrado.');
+        }
+      }
+
+      function gerarTexto() {
+        const liga = document.querySelector('input[name="liga"]:checked')?.value;
+        textoPersonalizado = document.getElementById("texto-personalizado").value;
+
+        if (!liga || minutosSelecionados.length === 0 || !mercadoSelecionado) {
+          document.getElementById("output").innerText = "Por favor, selecione uma liga, os minutos e o mercado principal.";
+          return;
+        }
+
+        const horariosFormatados = formatarHorarios();
+        const moedasFormatadas = formatarMoedas(false);
+
+        let texto = `🍀🍀FUTEBOL VIRTUAL BETANO🍀🍀\n\n`;
+        texto += `🏆 Liga: ${liga}\n`;
+        texto += `📣 Entrada: ${mercadoSelecionado}🎉\n\n`;
+        texto += `${horariosFormatados}\n\n`;
+
+        if (moedasFormatadas) {
+          texto += `${moedasFormatadas}\n\n`;
+        }
+
+        if (textoPersonalizado) {
+            texto += `${textoPersonalizado}\n\n`;
+        }
+        
+        texto += `⚡️BetStat`;
+
+        document.getElementById("output").innerText = texto;
+      }
+
+      window.onload = () => {
+        const savedText = localStorage.getItem("textoPersonalizado");
+        if (savedText) {
+          document.getElementById("texto-personalizado").value = savedText;
+          textoPersonalizado = savedText;
+        }
+      };
+
     </script>
   </body>
 </html>
