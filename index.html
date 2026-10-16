@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet" />
     <title>DataVirtual | Gerador de Tips</title>
-    <meta name="author" content="BetStat" />
+    <meta name="author" content="DataVirtual" />
     <style>
       :root {
         --bg: #0a0f16;
@@ -15,8 +15,8 @@
         --line: #263247;
         --text: #e6edf7;
         --text-dim: #8b9ab0;
-        --accent: #0ff5a0;
-        --on-accent: #04130c;
+        --accent: #1d7cb3;
+        --on-accent: #ffffff;
         --success: #17a862;
         --danger: #d92d4b;
         --sans: 'Outfit', -apple-system, 'Segoe UI', sans-serif;
@@ -196,7 +196,7 @@
       .moeda:has(input:checked),
       .moedas-container label:has(input:checked) {
         border-color: var(--accent);
-        background: #12301f;
+        background: #12293b;
       }
 
       .moeda input, .moedas-container input {
@@ -757,7 +757,7 @@
         if (moedasFormatadas)   texto += `${moedasFormatadas}\n\n`;
         if (textoPersonalizado) texto += `${textoPersonalizado}\n\n`;
 
-        texto += `⚡️BetStat`;
+        texto += `⚡️DataVirtual`;
 
         document.getElementById("output").innerText = texto;
       }
@@ -796,7 +796,7 @@
           texto += `${quantidadeGreens} Greens Seguidos! 🚀\n\n`;
         }
 
-        texto += `⚡️BetStat`;
+        texto += `⚡️DataVirtual`;
 
         document.getElementById("output").innerText = texto;
       }
@@ -821,7 +821,7 @@
 
         if (textoPersonalizado) texto += `${textoPersonalizado}\n\n`;
 
-        texto += `⚡️BetStat`;
+        texto += `⚡️DataVirtual`;
 
         document.getElementById("output").innerText = texto;
       }
