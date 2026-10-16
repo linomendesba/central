@@ -1016,7 +1016,22 @@
     </script>
 
     <script>
-      fetch('header.html').then(r => r.text()).then(d => { document.getElementById('header').innerHTML = d; });
+      // Procura o header.html na pasta atual, na pasta acima e na raiz do site.
+      // Só injeta se o arquivo existir (evita colar a página 404 do GitHub Pages).
+      (async () => {
+        const el = document.getElementById('header');
+        for (const url of ['header.html', '../header.html', '/header.html']) {
+          try {
+            const r = await fetch(url);
+            if (!r.ok) continue;
+            const d = await r.text();
+            if (/File not found/i.test(d)) continue;
+            el.innerHTML = d;
+            return;
+          } catch (e) {}
+        }
+        console.warn('header.html não encontrado');
+      })();
     </script>
   </body>
 </html>
