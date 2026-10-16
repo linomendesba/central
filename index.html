@@ -5,33 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet" />
-    <title>DataVirtual | Gerador de Tips</title>
+    <title>BetStat - Gerador de Tips</title>
     <meta name="author" content="BetStat" />
     <style>
       :root {
-        --bg: #070b12;
-        --bg2: #0b1018;
-        --bg3: #0f1520;
-        --bg4: #141c2a;
-        --field: #0c1220;
-        --border: rgba(100,160,255,.06);
-        --border2: rgba(100,160,255,.12);
-        --text: #c8d8f0;
-        --text-dim: rgba(200,216,240,.6);
-        --green: #0ff5a0;
-        --red: #ff3d6a;
-        --amber: #ffb020;
-        --blue: #38a8ff;
+        --bg: #0a0f16;
+        --surface: #111823;
+        --surface-2: #172030;
+        --line: #263247;
+        --text: #e6edf7;
+        --text-dim: #8b9ab0;
         --accent: #0ff5a0;
+        --on-accent: #04130c;
+        --success: #17a862;
+        --danger: #d92d4b;
+        --sans: 'Outfit', -apple-system, 'Segoe UI', sans-serif;
         --mono: 'JetBrains Mono', 'Courier New', monospace;
-        --sans: 'Outfit', sans-serif;
         --r: 6px;
-        --transition: all .15s ease;
       }
 
       * { margin: 0; padding: 0; box-sizing: border-box; }
 
-      html { background: var(--bg); }
+      html { background: var(--bg); scrollbar-width: thin; scrollbar-color: #2a3750 var(--bg); }
 
       body {
         font-family: var(--sans);
@@ -42,164 +37,101 @@
         overflow-x: hidden;
       }
 
-      /* Linhas de scan (mesmo fundo do flat) */
-      body::before {
-        content: '';
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 0;
-        background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 4px);
-      }
-
       /* Header vem do header.html */
       #header { position: relative; z-index: 2; }
       .header-spacer { height: 56px; }
 
-      /* Main */
+      /* Layout */
       .main-container {
-        position: relative;
-        z-index: 1;
-        max-width: 1200px;
+        max-width: 1100px;
         margin: 1.5rem auto 3rem;
         padding: 0 1rem;
       }
 
       .container {
-        position: relative;
-        background: var(--bg2);
-        border: 1px solid var(--border2);
+        background: var(--surface);
+        border: 1px solid var(--line);
         border-radius: var(--r);
         overflow: hidden;
       }
 
-      .container::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 1.5px;
-        background: linear-gradient(90deg, transparent 0%, var(--accent) 20%, var(--blue) 60%, transparent 100%);
-        opacity: .4;
-        pointer-events: none;
-      }
-
       .section {
-        padding: 1.25rem 1.5rem;
-        border-bottom: 1px solid var(--border);
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--line);
       }
 
       .section:last-child { border-bottom: none; }
 
       .section h2,
       .dual-section h3 {
-        display: flex;
-        align-items: center;
-        gap: .6rem;
-        font-family: var(--mono);
-        font-size: .68rem;
-        font-weight: 700;
-        letter-spacing: .14em;
-        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: 600;
         color: var(--text);
         margin-bottom: 1rem;
         text-align: left;
       }
 
-      .section h2::before {
-        content: '';
-        width: 6px; height: 6px;
-        border-radius: 50%;
-        background: var(--accent);
-        box-shadow: 0 0 8px var(--accent), 0 0 16px rgba(15,245,160,.3);
-        flex-shrink: 0;
-      }
-
-      .section h2::after,
-      .dual-section h3::after {
-        content: '';
-        flex: 1;
-        height: 1px;
-        background: var(--border2);
-      }
-
-      /* ==========================================
-         SELETOR DE CASA DE APOSTAS
-         ========================================== */
+      /* Casas de apostas */
       .casas-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: .6rem;
+        gap: .75rem;
       }
 
       .casa-btn {
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: .35rem;
-        padding: 1rem .75rem;
-        background: var(--bg3);
-        border: 1px solid var(--border2);
+        padding: 1rem;
+        background: var(--surface-2);
+        border: 1px solid var(--line);
         border-radius: var(--r);
-        color: var(--text-dim);
+        color: var(--text);
         cursor: pointer;
-        transition: var(--transition);
-        font-family: var(--mono);
-        font-weight: 700;
-        font-size: .78rem;
-        letter-spacing: .06em;
-        text-transform: uppercase;
+        font-weight: 600;
+        font-size: .95rem;
         user-select: none;
+        transition: background-color .15s, border-color .15s, color .15s;
       }
 
-      .casa-btn .casa-icon { font-size: 1.4rem; }
-
-      .casa-btn:hover { border-color: rgba(15,245,160,.3); color: var(--accent); }
+      .casa-btn:hover { border-color: #3a4a66; background: #1c273a; }
 
       .casa-btn.is-selected {
-        border-color: rgba(15,245,160,.4);
-        background: rgba(15,245,160,.06);
-        color: var(--accent);
-        box-shadow: 0 0 8px rgba(15,245,160,.08);
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
       }
 
-      /* Cores temáticas por casa */
-      .casa-btn[data-casa="Betano"].is-selected     { border-color: rgba(227,24,55,.6);  background: rgba(227,24,55,.08);  color: #fff; box-shadow: 0 0 10px rgba(227,24,55,.15); }
-      .casa-btn[data-casa="Bet365"].is-selected     { border-color: rgba(246,192,2,.6);  background: rgba(246,192,2,.08);  color: #fff; box-shadow: 0 0 10px rgba(246,192,2,.15); }
-      .casa-btn[data-casa="Kiron"].is-selected      { border-color: rgba(0,159,227,.6);  background: rgba(0,159,227,.08);  color: #fff; box-shadow: 0 0 10px rgba(0,159,227,.15); }
-      .casa-btn[data-casa="Estrelabet"].is-selected { border-color: rgba(138,43,226,.6); background: rgba(138,43,226,.10); color: #fff; box-shadow: 0 0 10px rgba(138,43,226,.18); }
-
-      /* Grupos de botões (ligas / mercado) */
+      /* Ligas / mercado */
       .button-group {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: .6rem;
+        gap: .75rem;
       }
 
       .button-group label {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: .7rem .75rem;
-        background: var(--bg3);
-        border: 1px solid var(--border2);
+        padding: .75rem;
+        background: var(--surface-2);
+        border: 1px solid var(--line);
         border-radius: var(--r);
         color: var(--text);
         cursor: pointer;
-        transition: var(--transition);
         font-weight: 500;
-        font-size: .85rem;
+        font-size: .9rem;
         user-select: none;
+        transition: background-color .15s, border-color .15s, color .15s;
       }
 
-      .button-group label:hover { border-color: rgba(15,245,160,.3); color: var(--accent); }
+      .button-group label:hover { border-color: #3a4a66; background: #1c273a; }
 
       .button-group label.is-selected {
-        border-color: rgba(15,245,160,.4);
-        background: rgba(15,245,160,.06);
-        color: var(--accent);
-        font-weight: 700;
-        box-shadow: 0 0 8px rgba(15,245,160,.08);
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+        font-weight: 600;
       }
 
       /* Minutos */
@@ -211,26 +143,25 @@
 
       #minutos label {
         padding: .6rem .4rem;
-        background: var(--bg3);
-        border: 1px solid var(--border2);
+        background: var(--surface-2);
+        border: 1px solid var(--line);
         border-radius: var(--r);
         text-align: center;
         cursor: pointer;
-        transition: var(--transition);
-        font-family: var(--mono);
-        font-size: .8rem;
+        font-size: .9rem;
         font-weight: 500;
+        font-variant-numeric: tabular-nums;
         user-select: none;
+        transition: background-color .15s, border-color .15s, color .15s;
       }
 
-      #minutos label:hover { border-color: rgba(15,245,160,.3); color: var(--accent); }
+      #minutos label:hover { border-color: #3a4a66; background: #1c273a; }
 
       #minutos label.is-selected {
-        border-color: rgba(15,245,160,.4);
-        background: rgba(15,245,160,.06);
-        color: var(--accent);
-        font-weight: 700;
-        box-shadow: 0 0 8px rgba(15,245,160,.08);
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+        font-weight: 600;
       }
 
       .button-group input, #minutos input { display: none; }
@@ -240,44 +171,42 @@
       .moedas-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: .6rem;
+        gap: .75rem;
       }
 
       .moeda,
       .moedas-container label {
-        padding: .7rem .9rem;
-        background: var(--bg3);
-        border: 1px solid var(--border2);
-        border-radius: var(--r);
-        cursor: pointer;
-        transition: var(--transition);
         display: flex;
         align-items: center;
         gap: .65rem;
-        font-size: .85rem;
+        padding: .75rem .9rem;
+        background: var(--surface-2);
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        cursor: pointer;
+        font-size: .9rem;
         user-select: none;
+        transition: background-color .15s, border-color .15s;
       }
 
       .moeda:hover,
-      .moedas-container label:hover { border-color: rgba(15,245,160,.3); }
+      .moedas-container label:hover { border-color: #3a4a66; background: #1c273a; }
 
       .moeda.checked,
       .moeda:has(input:checked),
       .moedas-container label:has(input:checked) {
-        border-color: rgba(15,245,160,.4);
-        background: rgba(15,245,160,.06);
-        color: var(--accent);
+        border-color: var(--accent);
+        background: #12301f;
       }
 
       .moeda input, .moedas-container input {
-        display: inline-block;
         width: 16px;
         height: 16px;
         accent-color: var(--accent);
         cursor: pointer;
       }
 
-      /* Resultado Green + Texto personalizado */
+      /* Resultado Green + texto personalizado */
       .dual-section {
         display: flex;
         gap: 2rem;
@@ -289,7 +218,6 @@
 
       .side-by-side-group {
         display: flex;
-        justify-content: flex-start;
         align-items: flex-end;
         gap: 1rem;
         flex-wrap: wrap;
@@ -298,69 +226,60 @@
       .form-group-inline {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
         gap: .4rem;
       }
 
       .form-group-inline label {
-        font-family: var(--mono);
-        font-size: .65rem;
-        font-weight: 700;
-        letter-spacing: .1em;
-        text-transform: uppercase;
+        font-size: .85rem;
+        font-weight: 500;
         color: var(--text-dim);
       }
 
       .form-group-inline input,
       #texto-personalizado {
         padding: .65rem .75rem;
-        background: var(--field);
-        border: 1px solid rgba(15,245,160,.10);
+        background: var(--bg);
+        border: 1px solid var(--line);
         border-radius: var(--r);
         color: var(--text);
-        font-family: var(--mono);
-        font-size: .9rem;
-        transition: var(--transition);
+        font-family: var(--sans);
+        font-size: .95rem;
         color-scheme: dark;
       }
 
-      .form-group-inline input { width: 140px; text-align: center; }
+      .form-group-inline input { width: 150px; }
       #texto-personalizado { width: 100%; }
 
       input:focus {
         outline: none;
-        border-color: rgba(15,245,160,.35);
-        background: var(--bg3);
-        box-shadow: 0 0 0 3px rgba(15,245,160,.08);
+        border-color: var(--accent);
       }
 
       .form-group {
         display: flex;
         flex-direction: column;
-        align-items: stretch;
         gap: .75rem;
       }
 
       /* Saída */
       #output {
-        background: var(--bg3);
-        border: 1px solid var(--border2);
+        background: var(--bg);
+        border: 1px solid var(--line);
         border-radius: var(--r);
         padding: 1.25rem;
         min-height: 200px;
         white-space: pre-wrap;
         font-family: var(--mono);
-        font-size: .85rem;
+        font-size: .88rem;
         line-height: 1.6;
         color: var(--text);
-        box-shadow: inset 0 2px 4px rgba(0,0,0,.2);
       }
 
       /* Botões de ação */
       .action-buttons {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: .6rem;
+        gap: .75rem;
         margin-top: 1rem;
       }
 
@@ -368,52 +287,41 @@
 
       .action-buttons button,
       .form-group button {
-        font-family: var(--mono);
-        font-size: .72rem;
-        font-weight: 700;
-        letter-spacing: .08em;
-        text-transform: uppercase;
-        padding: .85rem 1rem;
+        font-family: var(--sans);
+        font-size: .95rem;
+        font-weight: 600;
+        padding: .8rem 1rem;
         border-radius: var(--r);
-        border: 1px solid var(--border2);
+        border: 1px solid transparent;
         cursor: pointer;
-        transition: var(--transition);
-        user-select: none;
+        transition: background-color .15s, border-color .15s, filter .15s;
       }
 
-      .btn-primary {
-        background: rgba(15,245,160,.08);
-        border-color: rgba(15,245,160,.4) !important;
-        color: var(--accent);
-      }
-      .btn-primary:hover { background: rgba(15,245,160,.16); box-shadow: 0 0 10px rgba(15,245,160,.15); }
+      .btn-primary { background: var(--accent); color: var(--on-accent); }
+      .btn-primary:hover { filter: brightness(.92); }
 
-      .btn-secondary { background: var(--bg3); color: var(--text); }
-      .btn-secondary:hover { border-color: rgba(15,245,160,.3) !important; color: var(--accent); }
+      .btn-secondary { background: var(--surface-2); border-color: var(--line) !important; color: var(--text); }
+      .btn-secondary:hover { background: #1c273a; border-color: #3a4a66 !important; }
 
-      .btn-success { background: var(--accent); border-color: var(--accent) !important; color: var(--bg); }
-      .btn-success:hover { box-shadow: 0 0 14px rgba(15,245,160,.4); }
+      .btn-success { background: var(--success); color: #fff; }
+      .btn-success:hover { filter: brightness(1.1); }
 
-      .btn-danger { background: rgba(255,61,106,.10); border-color: rgba(255,61,106,.45) !important; color: var(--red); }
-      .btn-danger:hover { background: rgba(255,61,106,.20); box-shadow: 0 0 10px rgba(255,61,106,.2); }
+      .btn-danger { background: var(--danger); color: #fff; }
+      .btn-danger:hover { filter: brightness(1.1); }
 
-      /* Feedback ao copiar / salvar / carregar */
       .action-buttons button.is-done,
       .form-group button.is-done {
         background: var(--accent);
         border-color: var(--accent) !important;
-        color: var(--bg);
+        color: var(--on-accent);
       }
 
-      /* Placeholder de casa não selecionada */
+      /* Placeholder */
       .placeholder-msg {
         grid-column: 1 / -1;
-        text-align: center;
         color: var(--text-dim);
-        font-family: var(--mono);
-        font-size: .75rem;
-        letter-spacing: .06em;
-        padding: .75rem 0;
+        font-size: .9rem;
+        padding: .5rem 0;
       }
 
       /* Responsivo */
@@ -427,17 +335,11 @@
         .dual-section > div { min-width: 100%; }
       }
 
-      @media (max-width: 480px) {
-        .section h2, .dual-section h3 { font-size: .62rem; }
-        .button-group label { font-size: .8rem; padding: .65rem .5rem; }
-      }
-
       /* Scrollbar */
-      html { scrollbar-width: thin; scrollbar-color: rgba(15,245,160,.15) transparent; }
       ::-webkit-scrollbar { width: 8px; }
       ::-webkit-scrollbar-track { background: var(--bg); }
-      ::-webkit-scrollbar-thumb { background: rgba(15,245,160,.15); border-radius: 4px; }
-      ::-webkit-scrollbar-thumb:hover { background: rgba(15,245,160,.3); }
+      ::-webkit-scrollbar-thumb { background: #2a3750; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #3a4a66; }
     </style>
   </head>
 
@@ -455,19 +357,15 @@
           <h2>Selecione a Casa de Apostas</h2>
           <div class="casas-grid">
             <div class="casa-btn" data-casa="Betano" onclick="selecionarCasa('Betano')">
-              <span class="casa-icon">⚽️</span>
               <span>Betano</span>
             </div>
             <div class="casa-btn" data-casa="Bet365" onclick="selecionarCasa('Bet365')">
-              <span class="casa-icon">⚽️</span>
               <span>Bet365</span>
             </div>
             <div class="casa-btn" data-casa="Kiron" onclick="selecionarCasa('Kiron')">
-              <span class="casa-icon">⚽️</span>
               <span>Kiron</span>
             </div>
             <div class="casa-btn" data-casa="Estrelabet" onclick="selecionarCasa('Estrelabet')">
-              <span class="casa-icon">⚽️</span>
               <span>Estrelabet</span>
             </div>
           </div>
